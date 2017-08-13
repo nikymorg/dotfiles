@@ -68,10 +68,10 @@ export PATH="$USR_PATHS:$PATH"
 # Editors
 # Tells your shell that when a program requires various editors, use atom.
 # The -w flag tells your shell to wait until atom exits
-export VISUAL="atom -w"
-export SVN_EDITOR="atom -w"
-export GIT_EDITOR="atom -w"
-export EDITOR="atom -w"
+export VISUAL="atom"
+export SVN_EDITOR="atom"
+export GIT_EDITOR="atom"
+export EDITOR="atom"
 
 # GIT_MERGE_AUTO_EDIT
 # This variable configures git to not require a message when you merge.
@@ -82,7 +82,7 @@ export GIT_MERGE_AUTOEDIT='no'
 
 # open bash profile
 function bp {
-  $EDITOR ~/.bash_profile
+  $EDITOR /Users/$USER/.bash_profile
 }
 
 # cd into desktop
@@ -97,7 +97,12 @@ function development {
 
 # cd and open ironboard
 function iron {
-  cd /Users/$USER/Development/Flatiron/ironboard/$@
+  cd /Users/$USER/Dev/ironboard/$@
+  $EDITOR .
+}
+
+function dot {
+  cd /Users/$USER/Dev/dotfiles/$@
   $EDITOR .
 }
 
