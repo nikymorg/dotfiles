@@ -77,166 +77,6 @@ export EDITOR="atom"
 # This variable configures git to not require a message when you merge.
 export GIT_MERGE_AUTOEDIT='no'
 
-# Helper Functions
-# =====================
-
-# open bash profile
-function bp {
-  $EDITOR /Users/$USER/.bash_profile
-}
-
-# cd into desktop
-function desktop {
-  cd /Users/$USER/Desktop/$@
-}
-
-# cd into dev dir
-function development {
-  cd /Users/$USER/Dev/$@
-}
-
-# cd and open ironboard
-function iron {
-  cd /Users/$USER/Dev/ironboard/$@
-  $EDITOR .
-}
-
-function dot {
-  cd /Users/$USER/Dev/dotfiles/$@
-  $EDITOR .
-}
-
-# clone and cd
-function gitget {
-  reponame=${1##*/}
-  reponame=${reponame%.git}
-  git clone "$1" "$reponame";
-  cd "$reponame";
-  if [ -f ./package.json ] && [ ! -f Gemfile ]; then
-   yarn install;
-  elif [ -f Gemfile ] && [ ! -f ./package.json ]; then
-   bundle install;
-  else
-   printf "\n(nothing to install...)\n"
-  fi
-}
-
-# cd up clone and cd
-function gitup {
-  cd ../
-  reponame=${1##*/}
-  reponame=${reponame%.git}
-  git clone "$1" "$reponame";
-  cd "$reponame";
-  if [ -f ./package.json ] && [ ! -f Gemfile ]; then
-   yarn install;
-  elif [ -f Gemfile ] && [ ! -f ./package.json ]; then
-   bundle install;
-  else
-   printf "\n(nothing to install...)\n"
-  fi
-}
-
-# A function to easily grep for a matching process
-# USE: psg postgres
-function psg {
-  FIRST=`echo $1 | sed -e 's/^\(.\).*/\1/'`
-  REST=`echo $1 | sed -e 's/^.\(.*\)/\1/'`
-  ps aux | grep "[$FIRST]$REST"
-}
-
-# A function to extract correctly any archive based on extension
-# USE: extract imazip.zip
-#      extract imatar.tar
-function extract () {
-    if [ -f $1 ] ; then
-        case $1 in
-            *.tar.bz2)  tar xjf $1      ;;
-            *.tar.gz)   tar xzf $1      ;;
-            *.bz2)      bunzip2 $1      ;;
-            *.rar)      rar x $1        ;;
-            *.gz)       gunzip $1       ;;
-            *.tar)      tar xf $1       ;;
-            *.tbz2)     tar xjf $1      ;;
-            *.tgz)      tar xzf $1      ;;
-            *.zip)      unzip $1        ;;
-            *.Z)        uncompress $1   ;;
-            *)          echo "'$1' cannot be extracted via extract()" ;;
-        esac
-    else
-        echo "'$1' is not a valid file"
-    fi
-}
-
-# A function to bring local ironboard repo completely up to date
-# USE: cd into /ironboard first, then run command
-function ibgo () {
-  git pull --rebase --prune                  # pull down latest from master + prune unused branches
-  git gc                                     # compress
-  bundle                                     # run bundler to install/update gems
-  yarn install                               # run yarn install to install/update packages
-  bin/rake db:migrate RAILS_ENV=development  # run dev db migrations
-  bin/rake db:migrate RAILS_ENV=test         # run test db migrations
-  git checkout -- db/schema.rb               # discard db schema changes
-}
-
-# Aliases
-# =====================
-# LS
-alias l='ls -lah'
-
-# db
-alias dbmtest='rake db:migrate RAILS_ENV=test'
-alias dbmdev='rake db:migrate RAILS_ENV=development'
-
-# Git
-alias gco="git checkout"
-alias gcl="git clone"
-alias gst="git status"
-alias gd="git diff | atom"
-alias gl="git pull"
-alias glr="git pull --rebase --prune"
-alias gp="git push"
-alias gc="git commit -v"
-alias gca="git commit -v -a"
-alias gcam="git commit -am"
-alias gba="git branch -a"
-alias gbv="git branch -v"
-alias gbdall="git branch | grep -v 'master' | xargs git branch -D"
-alias gcm="git checkout master"
-alias grm="git rebase master"
-
-# Jekyll
-alias js='jekyll serve'
-
-# Rspec
-alias rff="rspec --fail-fast"
-
-# Atom
-alias atom='open -a /Applications/Atom.app'
-
-# Sublime Text
-alias subl='open -a /Applications/Sublime\ Text.app'
-
-# # Hub
-# eval "$(hub alias -s)"
-# alias hubpr="hub pull-request -o"
-# alias hubb="hub browse"
-# alias hubc="hub compare $(git rev-parse --abbrev-ref HEAD)"
-
-# Rails
-alias rs='rails s'
-alias rc='rails c'
-alias rcs='rails c --sandbox'
-
-# Finder - Show / Unshow Hidden Files
-alias reveal='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
-alias rehide='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
-
-# cssh
-# https://github.com/flatiron-labs/operations/wiki/i2cssh
-alias cssh='i2cssh -c'
-
 # Case-Insensitive Auto Completion
 # =====================
 bind "set completion-ignore-case on"
@@ -252,7 +92,11 @@ bind "set completion-ignore-case on"
 #   GIT_PS1_SHOWUNTRACKEDFILES=true
 # fi
 
-source ~/.bashrc
+# Sourcing files
+source /Users/$USER/.bashrc
+source /Users/$USER/.alias
+source /Users/$USER/.functions
+source /Users/$USER/.env
 
 # NVM
 # Mandatory loading of NVM into the shell
