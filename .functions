@@ -22,9 +22,15 @@ function iron {
   $EDITOR .
 }
 
+# cd and open dotfiles
 function dot {
   cd /Users/$USER/Dev/dotfiles/$@
   $EDITOR .
+}
+
+# mkdir and cd into it
+function mk() {
+  mkdir -p "$@" && cd "$@"
 }
 
 # clone and cd

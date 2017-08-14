@@ -19,13 +19,12 @@ function prompt {
   local   RED="\[\e[0;31m\]"
   local   BLUE="\[\e[0;34m\]"
   local   GREEN="\[\e[0;32m\]"
-  local   GRAY_TEXT_BLUE_BACKGROUND="\[\e[37;44;1m\]"
 
   # Define a variable to reset the text color
   local   RESET="\[\e[0m\]"
 
   #Export PS1 prompt text
-  export  PS1="\[\e]2;\u@\h\a[$GRAY_TEXT_BLUE_BACKGROUND\t$RESET]$RED\$(parse_git_branch) $GREEN\W\n$BLUE//$RED $CHAR $RESET"
+  export  PS1="\[\e]2;\u@\h\a$RESET\t$RESET$RED\$(parse_git_branch) $GREEN\W\n$BLUE//$RED $CHAR $RESET"
     PS2='> '
     PS4='+ '
 }
