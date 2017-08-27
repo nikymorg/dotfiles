@@ -24,7 +24,7 @@ function iron {
 
 # cd and open dotfiles
 function dot {
-  cd /Users/$USER/dotfiles/$@
+  cd /Users/$USER/.dotfiles/$@
   $EDITOR .
 }
 
