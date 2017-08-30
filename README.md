@@ -6,7 +6,7 @@ Running the below commands in Terminal will clone this repo into `~/.dotfiles`. 
 
 ```terminal
 cd ~
-git clone git://github.com/nikymorg/dotfiles ~/.dotfiles
+git clone https://github.com/nikymorg/dotfiles.git ~/.dotfiles
 unlink ~/.bash_profile
 ln -s ~/.dotfiles/.bash_profile ~/
 ```
