@@ -6,6 +6,11 @@ function bp {
   $EDITOR /Users/$USER/.bash_profile
 }
 
+# source bash profile
+function sbp {
+  source /Users/$USER/.bash_profile
+}
+
 # cd into desktop
 function desktop {
   cd /Users/$USER/Desktop/$@
@@ -27,6 +32,12 @@ function dot {
   cd /Users/$USER/.dotfiles/$@
   $EDITOR .
 }
+
+# open notes
+function notes {
+  $EDITOR /Users/$USER/dev/notes/$@
+}
+
 
 # mkdir and cd into it
 function mk() {
