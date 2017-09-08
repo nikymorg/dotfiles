@@ -55,7 +55,7 @@ end
 
 def remove_dotfiles
   puts "removing dotfiles"
-  system %Q{rm -rf ~/dotfiles}
+  system %Q{rm -rf ~/.dotfiles}
 end
 
 def restore_backup(file)
