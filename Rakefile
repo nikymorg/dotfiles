@@ -29,39 +29,41 @@ end
 def setup_gitignore
   unlink_file('gitignore_global')
   link_file('gitignore_global')
-  system %Q{git config --global core.excludesfile ~/.gitignore_global}
+  system %Q{git config --global core.excludesfile $HOME/.gitignore_global}
 end
 
 def backup_files
   puts "backing up bash profile and global gitignore"
-  system %Q{mv ~/.bash_profile{,.bak}}
-  system %Q{mv ~/.gitignore_global{,.bak}}
+  system %Q{mv $HOME/.bash_profile{,.bak}}
+  system %Q{mv $HOME/.gitignore_global{,.bak}}
 end
 
 def unlink_file(file)
-  puts "unlinking ~/.#{file}"
-  system %Q{unlink "$HOME/.#{file}"}
+  if File.exist?("$HOME/.#{file}")
+    puts "unlinking $HOME/.#{file}"
+    system %Q{unlink "$HOME/.#{file}"}
+  end
 end
   
 def link_file(file)
-  puts "linking ~/.#{file}"
+  puts "linking $HOME/.#{file}"
   system %Q{ln -s "$PWD/#{file}" "$HOME/.#{file}"}
 end
 
 def source_file(file)
-  puts "sourcing ~/.#{file}"
+  puts "sourcing$HOME~/.#{file}"
   system %Q{[ -r "#{file}" ] && [ -f "#{file}" ] && source "#{file}"}
 end
 
 def remove_dotfiles
   puts "removing dotfiles"
-  system %Q{rm -rf ~/.dotfiles}
+  system %Q{rm -rf $HOME/.dotfiles}
 end
 
 def restore_backup(file)
-  if File.exist?("~/.#{file}.bak")
+  if File.exist?("$HOME/.#{file}.bak")
     puts "restoring backup #{file}"
-    system %Q{mv "~/.#{file}{.bak,}"}
+    system %Q{mv "$HOME/.#{file}{.bak,}"}
   end
 end
 
@@ -71,5 +73,5 @@ def remove_file(file)
 end
 
 def change_dir
-  system %Q{cd ~/.dotfiles}
+  system %Q{cd $HOME/.dotfiles}
 end
