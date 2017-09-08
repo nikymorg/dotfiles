@@ -1,5 +1,5 @@
 # Version Controlled Dotfiles
-This is my dotfile configuration for Mac OS X. 
+This is my dotfile configuration for Mac OS X.
 
 # Prerequisites
 - Ruby installed with Rake
