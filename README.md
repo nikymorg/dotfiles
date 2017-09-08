@@ -1,19 +1,21 @@
 # Version Controlled Dotfiles
 This is my dotfile configuration for Mac OS X. 
 
+# Prerequisites
+- Ruby installed with Rake
+
 # Installation
-Running the below commands will clone this repo into `~/.dotfiles`. After cloning it will create a symlink for your bash profile so that it will be sourced as if it were placed in the HOME directory. Your bash profile in turn will source the other dotfiles.
+Running the below commands will clone this repo into `~/.dotfiles` and set it up as your current dotfile configuration. Running a custom rake task will backup existing `.bash_profile` and `.gitignore_global` files, unlink any symlinks for those files and create symlinks to them from the `.dotfiles` version.
 
 ```terminal
 git clone git://github.com/nikymorg/dotfiles ~/.dotfiles
-unlink ~/.bash_profile
-ln -s ~/.dotfiles/.bash_profile ~/
+cd ~/.dotfiles
+rake
 ```
 
 # Uninstall
-To uninstall, remove the bash profile symlink and remove the dotfiles from your system.
+A custom rake task will uninstall by removing the symlinks, removing `.dotfiles` directory and moving your backup bash profile and gitignore files back into place.
 
 ```terminal
-unlink ~/.bash_profile
-rm -rf ~/.dotfiles
+rake uninstall
 ```

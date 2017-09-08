@@ -85,4 +85,7 @@ tramp
 sftp-config.json
 
 #ignore env variables
-.env
+*.env
+
+#byebug history
+*.byebug_history

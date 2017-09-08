@@ -1,6 +1,9 @@
 # Helper Functions
 # =====================
 
+# File Shortcuts
+# =====================
+
 # open bash profile
 function bp {
   $EDITOR /Users/$USER/.bash_profile
@@ -21,15 +24,15 @@ function development {
   cd /Users/$USER/Dev/$@
 }
 
+# cd and open dotfiles
+function dot {
+cd /Users/$USER/.dotfiles/$@
+$EDITOR .
+}
+
 # cd and open ironboard
 function iron {
   cd /Users/$USER/Dev/ironboard/$@
-  $EDITOR .
-}
-
-# cd and open dotfiles
-function dot {
-  cd /Users/$USER/.dotfiles/$@
   $EDITOR .
 }
 
@@ -38,10 +41,13 @@ function notes {
   $EDITOR /Users/$USER/dev/notes/$@
 }
 
+# Other Functions
+# =====================
 
-# mkdir and cd into it
-function mk() {
-  mkdir -p "$@" && cd "$@"
+# check what is running on a specific port
+function checkport {
+  port=$1;
+  lsof -i tcp:$1;
 }
 
 # clone and cd
@@ -51,11 +57,11 @@ function gitget {
   git clone "$1" "$reponame";
   cd "$reponame";
   if [ -f ./package.json ] && [ ! -f Gemfile ]; then
-   yarn install;
+  yarn install;
   elif [ -f Gemfile ] && [ ! -f ./package.json ]; then
-   bundle install;
+  bundle install;
   else
-   printf "\n(nothing to install...)\n"
+  printf "\n(nothing to install...)\n"
   fi
 }
 
@@ -67,12 +73,17 @@ function gitup {
   git clone "$1" "$reponame";
   cd "$reponame";
   if [ -f ./package.json ] && [ ! -f Gemfile ]; then
-   yarn install;
+  yarn install;
   elif [ -f Gemfile ] && [ ! -f ./package.json ]; then
-   bundle install;
+  bundle install;
   else
-   printf "\n(nothing to install...)\n"
+  printf "\n(nothing to install...)\n"
   fi
+}
+
+# mkdir and cd into it
+function mk() {
+  mkdir -p "$@" && cd "$@"
 }
 
 # A function to easily grep for a matching process
