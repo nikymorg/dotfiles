@@ -16,9 +16,9 @@ end
 
 desc 'uninstall dotfiles'
 task :uninstall do
-  unlink_file('bash_profile')
-  unlink_file('gitignore')
-  restore_backups
+  change_dir
+  remove_file('bash_profile')
+  remove_file('gitignore_global')
 end
 
 def setup_profile
@@ -58,8 +58,18 @@ def remove_dotfiles
   system %Q{rm -rf ~/dotfiles}
 end
 
-def restore_backups
-  puts "restoring backup bash profile and gitignore"
-  system %Q{mv ~/.bash_profile{.bak,}}
-  system %Q{mv ~/.gitignore{.bak,}}
+def restore_backup(file)
+  if File.exist?("~/.#{file}.bak")
+    puts "restoring backup #{file}"
+    system %Q{mv "~/.#{file}{.bak,}"}
+  end
+end
+
+def remove_file(file)
+  unlink_file(file)
+  restore_backup(file)
+end
+
+def change_dir
+  system %Q{cd ~/.dotfiles}
 end
