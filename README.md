@@ -12,10 +12,3 @@ git clone https://github.com/nikymorg/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 rake
 ```
-
-# Uninstall
-A custom rake task will uninstall by removing the symlinks, removing `.dotfiles` directory and moving your backup bash profile and gitignore files back into place.
-
-```terminal
-rake uninstall
-```
