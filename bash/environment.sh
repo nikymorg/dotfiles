@@ -35,7 +35,5 @@ export PATH=$PATH:$MONGO_PATH/bin
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
-# RVM - Ruby Version Manager
-export PATH="$PATH:$HOME/.rvm/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-# Load RVM into a shell session *as a function*
+# RBENV - Ruby Version Manager
+eval "$(rbenv init -)"
