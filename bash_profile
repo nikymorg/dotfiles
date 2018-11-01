@@ -2,6 +2,6 @@
 # =====================
 
 # Sourcing files
-for file in ~/.dotfiles/bash/{.env,aliases,bashrc,environment,functions,git_autocomplete,prompt}; do
+for file in ~/.dotfiles/bash/{aliases.sh,environment.sh,functions.sh,git_autocomplete.sh,prompt.sh}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
