@@ -6,7 +6,8 @@
 
 # open bash profile
 function bp {
-  $EDITOR /Users/$USER/.bash_profile
+  $EDITOR /Users/$USER/.bash_profile  
+  $EDITOR /Users/$USER/.dotfiles
 }
 
 # source bash profile

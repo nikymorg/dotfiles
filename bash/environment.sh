@@ -33,7 +33,7 @@ export PATH=$PATH:$MONGO_PATH/bin
 
 # NVM - Node Version Manager
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+ . "/usr/local/opt/nvm/nvm.sh"
 
 # RVM - Ruby Version Manager
 export PATH="$PATH:$HOME/.rvm/bin"

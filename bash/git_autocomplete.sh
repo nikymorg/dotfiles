@@ -20,7 +20,6 @@
 # ===================
 
 # ===================
-# Autocomplete from joshrowly j
 
 #
 # bash/zsh completion support for core Git.

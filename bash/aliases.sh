@@ -21,8 +21,9 @@ alias gd="git diff | atom"
 alias gl="git pull"
 alias glr="git pull --rebase --prune"
 alias gp="git push"
-alias gc="git commit -v"
-alias gca="git commit -v -a"
+alias gpr="hub pull-request"
+alias gc="git commit"
+alias gca="git commit -a"
 alias gcam="git commit -am"
 alias gba="git branch -a"
 alias gbv="git branch -v"
@@ -43,11 +44,11 @@ alias atom='open -a /Applications/Atom.app'
 # Sublime Text
 alias subl='open -a /Applications/Sublime\ Text.app'
 
-# # Hub
-# eval "$(hub alias -s)"
-# alias hubpr="hub pull-request -o"
-# alias hubb="hub browse"
-# alias hubc="hub compare $(git rev-parse --abbrev-ref HEAD)"
+# Hub
+eval "$(hub alias -s)"
+alias hubpr="hub pull-request -o"
+alias hubb="hub browse"
+alias hubc="hub compare $(git rev-parse --abbrev-ref HEAD)"
 
 # Rails
 alias rs='rails s'

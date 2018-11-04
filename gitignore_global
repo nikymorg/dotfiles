@@ -89,3 +89,6 @@ sftp-config.json
 
 #byebug history
 *.byebug_history
+
+#DS Store
+.DS_Store
