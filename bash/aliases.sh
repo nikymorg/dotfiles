@@ -48,7 +48,6 @@ alias subl='open -a /Applications/Sublime\ Text.app'
 eval "$(hub alias -s)"
 alias hubpr="hub pull-request -o"
 alias hubb="hub browse"
-alias hubc="hub compare $(git rev-parse --abbrev-ref HEAD)"
 
 # Rails
 alias rs='rails s'

@@ -7,10 +7,10 @@ export GIT_MERGE_AUTOEDIT='no'
 
 # Editors
 # Tells your shell that when a program requires various editors, use atom.
-export VISUAL="atom"
-export SVN_EDITOR="atom"
-export GIT_EDITOR="atom"
-export EDITOR="atom"
+export VISUAL="atom --wait"
+export SVN_EDITOR="atom --wait"
+export GIT_EDITOR="atom --wait"
+export EDITOR="atom --wait"
 
 # Library Paths
 # =====================
