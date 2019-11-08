@@ -33,12 +33,12 @@ export PATH=$PATH:$MONGO_PATH/bin
 
 # NVM - Node Version Manager
 export NVM_DIR="$HOME/.nvm"
- . "/usr/local/opt/nvm/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # RVM - Ruby Version Manager
 export PATH="$PATH:$HOME/.rvm/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-# Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # Setting PATH for Python 3.8
 PATH="/Library/Frameworks/Python.framework/Versions/3.8/bin:${PATH}"
