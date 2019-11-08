@@ -6,7 +6,7 @@
 
 # open bash profile
 function bp {
-  $EDITOR /Users/$USER/.bash_profile  
+  $EDITOR /Users/$USER/.bash_profile
   $EDITOR /Users/$USER/.dotfiles
 }
 
@@ -99,33 +99,21 @@ function psg {
 # USE: extract imazip.zip
 #      extract imatar.tar
 function extract () {
-    if [ -f $1 ] ; then
-        case $1 in
-            *.tar.bz2)  tar xjf $1      ;;
-            *.tar.gz)   tar xzf $1      ;;
-            *.bz2)      bunzip2 $1      ;;
-            *.rar)      rar x $1        ;;
-            *.gz)       gunzip $1       ;;
-            *.tar)      tar xf $1       ;;
-            *.tbz2)     tar xjf $1      ;;
-            *.tgz)      tar xzf $1      ;;
-            *.zip)      unzip $1        ;;
-            *.Z)        uncompress $1   ;;
-            *)          echo "'$1' cannot be extracted via extract()" ;;
-        esac
-    else
-        echo "'$1' is not a valid file"
-    fi
-}
-
-# A function to bring local ironboard repo completely up to date
-# USE: cd into /ironboard first, then run command
-function ibgo () {
-  git pull --rebase --prune                  # pull down latest from master + prune unused branches
-  git gc                                     # compress
-  bundle                                     # run bundler to install/update gems
-  yarn install                               # run yarn install to install/update packages
-  bin/rake db:migrate RAILS_ENV=development  # run dev db migrations
-  bin/rake db:migrate RAILS_ENV=test         # run test db migrations
-  git checkout -- db/schema.rb               # discard db schema changes
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)  tar xjf $1      ;;
+      *.tar.gz)   tar xzf $1      ;;
+      *.bz2)      bunzip2 $1      ;;
+      *.rar)      rar x $1        ;;
+      *.gz)       gunzip $1       ;;
+      *.tar)      tar xf $1       ;;
+      *.tbz2)     tar xjf $1      ;;
+      *.tgz)      tar xzf $1      ;;
+      *.zip)      unzip $1        ;;
+      *.Z)        uncompress $1   ;;
+      *)          echo "'$1' cannot be extracted via extract()" ;;
+    esac
+  else
+      echo "'$1' is not a valid file"
+  fi
 }
