@@ -8,6 +8,7 @@ task :install do
   link_file('gitignore_global')
   link_file('vimrc')
   source_directory('./bash')
+	config_gitignore
 end
 
 def link_file(file)
@@ -24,6 +25,10 @@ end
 def source_file(file)
   puts "sourcing #{file}"
   system %Q{[ -r "#{file}" ] && [ -f "#{file}" ] && source "#{file}"}
+end
+
+def config_gitignore
+  system %Q{git config --global core.excludesfile ~/.gitignore_global}
 end
 
 def source_directory(dir)

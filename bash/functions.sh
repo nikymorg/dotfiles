@@ -83,7 +83,7 @@ function gitup {
 }
 
 # mkdir and cd into it
-function mk() {
+function mk {
   mkdir -p "$@" && cd "$@"
 }
 
@@ -98,7 +98,7 @@ function psg {
 # A function to extract correctly any archive based on extension
 # USE: extract imazip.zip
 #      extract imatar.tar
-function extract () {
+function extract {
   if [ -f $1 ] ; then
     case $1 in
       *.tar.bz2)  tar xjf $1      ;;

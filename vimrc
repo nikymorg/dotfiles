@@ -2,7 +2,7 @@
 set number
 
 " syntax highlighting
-set syntax
+syntax on
 
 " keep 500 commands in history
 set history=500
