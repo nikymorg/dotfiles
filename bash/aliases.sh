@@ -49,6 +49,10 @@ eval "$(hub alias -s)"
 alias hubpr="hub pull-request -o"
 alias hubb="hub browse"
 
+# Python
+alias python=/usr/local/bin/python3
+alias pip=/Library/Frameworks/Python.framework/Versions/3.8/bin/pip3
+
 # Rails
 alias rs='rails s'
 alias rc='rails c'
@@ -58,6 +62,3 @@ alias rcs='rails c --sandbox'
 alias reveal='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 alias rehide='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 
-# cssh
-# https://github.com/flatiron-labs/operations/wiki/i2cssh
-alias cssh='i2cssh -c'

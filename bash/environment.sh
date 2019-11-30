@@ -7,10 +7,10 @@ export GIT_MERGE_AUTOEDIT='no'
 
 # Editors
 # Tells your shell that when a program requires various editors, use atom.
-export VISUAL="atom --wait"
-export SVN_EDITOR="atom --wait"
-export GIT_EDITOR="atom --wait"
-export EDITOR="atom --wait"
+export VISUAL="vim"
+export SVN_EDITOR="vim"
+export GIT_EDITOR="vim"
+export EDITOR="vim"
 
 # Library Paths
 # =====================
@@ -43,4 +43,3 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # Setting PATH for Python 3.8
 PATH="/Library/Frameworks/Python.framework/Versions/3.8/bin:${PATH}"
 export PATH
-

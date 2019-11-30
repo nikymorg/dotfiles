@@ -4,12 +4,6 @@
 # File Shortcuts
 # =====================
 
-# open bash profile
-function bp {
-  $EDITOR /Users/$USER/.bash_profile
-  $EDITOR /Users/$USER/.dotfiles
-}
-
 # source bash profile
 function sbp {
   source /Users/$USER/.bash_profile
@@ -17,29 +11,23 @@ function sbp {
 
 # cd into desktop
 function desktop {
-  cd /Users/$USER/Desktop/$@
-}
-
-# cd into dev dir
-function development {
-  cd /Users/$USER/Dev/$@
+  cd /Users/$USER/Desktop/
 }
 
 # cd and open dotfiles
 function dot {
-cd /Users/$USER/.dotfiles/$@
-$EDITOR .
+  cd /Users/$USER/.dotfiles
+  $EDITOR .
 }
 
-# cd and open ironboard
-function iron {
-  cd /Users/$USER/Dev/ironboard/$@
-  $EDITOR .
+# cd into code dir
+function code {
+  cd /Users/$USER/code
 }
 
 # open notes
 function notes {
-  $EDITOR /Users/$USER/dev/notes/$@
+  $EDITOR /Users/$USER/notes
 }
 
 # Other Functions
