@@ -6,7 +6,7 @@
 export GIT_MERGE_AUTOEDIT='no'
 
 # Editors
-# Tells your shell that when a program requires various editors, use atom.
+# Tells your shell that when a program requires various editors, use vim.
 export VISUAL="vim"
 export SVN_EDITOR="vim"
 export GIT_EDITOR="vim"
