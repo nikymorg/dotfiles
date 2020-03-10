@@ -54,35 +54,6 @@ function gitget {
   fi
 }
 
-# cd up clone and cd
-function gitup {
-  cd ../
-  reponame=${1##*/}
-  reponame=${reponame%.git}
-  git clone "$1" "$reponame";
-  cd "$reponame";
-  if [ -f ./package.json ] && [ ! -f Gemfile ]; then
-  yarn install;
-  elif [ -f Gemfile ] && [ ! -f ./package.json ]; then
-  bundle install;
-  else
-  printf "\n(nothing to install...)\n"
-  fi
-}
-
-# mkdir and cd into it
-function mk {
-  mkdir -p "$@" && cd "$@"
-}
-
-# A function to easily grep for a matching process
-# USE: psg postgres
-function psg {
-  FIRST=`echo $1 | sed -e 's/^\(.\).*/\1/'`
-  REST=`echo $1 | sed -e 's/^.\(.*\)/\1/'`
-  ps aux | grep "[$FIRST]$REST"
-}
-
 # A function to extract correctly any archive based on extension
 # USE: extract imazip.zip
 #      extract imatar.tar

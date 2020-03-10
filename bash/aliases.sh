@@ -17,7 +17,7 @@ alias dbmdev='rake db:migrate RAILS_ENV=development'
 alias gco="git checkout"
 alias gcl="git clone"
 alias gst="git status"
-alias gd="git diff | atom"
+alias gd="git diff | vim"
 alias gl="git pull"
 alias glr="git pull --rebase --prune"
 alias gp="git push"
@@ -30,19 +30,13 @@ alias gbv="git branch -v"
 alias gbdall="git branch | grep -v 'master' | xargs git branch -D"
 alias gcm="git checkout master"
 alias grm="git rebase master"
-alias go="git open"
+alias gop="git open"
 
 # Jekyll
 alias js='jekyll serve'
 
 # Rspec
 alias rff="rspec --fail-fast"
-
-# Atom
-alias atom='open -a /Applications/Atom.app'
-
-# Sublime Text
-alias subl='open -a /Applications/Sublime\ Text.app'
 
 # Hub
 eval "$(hub alias -s)"
