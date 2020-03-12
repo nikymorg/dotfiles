@@ -1,7 +1,3 @@
-# set Spaceship ZSH as a prompt
-autoload -U promptinit; promptinit
-prompt spaceship
-
-# source bash profile
-source ~/.bash_profile
+# load prompt
+source ~/.dotfiles/scripts/prompt.sh
 
