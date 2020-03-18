@@ -1,0 +1,112 @@
+#!/bin/bash
+
+function setup_bash_profile {
+  link_file "bash_profile"
+  link_file "gitignore_global"
+  link_file "vimrc"
+  source_directory "./bash"
+  config_gitignore
+}
+
+function link_file {
+  FILE=$1
+	backup_file $FILE
+	echo "linking $FILE"
+	ln -s ./${FILE} ${HOME}/.${FILE}
+}
+
+function backup_file {
+	FILE=$1
+	echo "backing up $FILE"
+	cp -L  $HOME/.${FILE}{,.bak}
+}
+
+function source_file {
+	FILE=$1
+	echo "sourcing $FILE"
+  [ -r $FILE] && [ -f $FILE] && source $FILE
+}
+
+function source_directory {
+  for FILE in ~/.dotfiles/bash/*; do
+	  source_file $FILE
+  done;
+}
+
+function config_gitignore {
+  git config --global core.excludesfile ~/.gitignore_global
+}
+
+function install_brew {
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+}
+
+function brew_install_casks {
+  casks=(
+    1password
+    appcleaner
+    arq
+    brave-browser
+    google-chrome
+    spectacle
+    spotify
+    the_silver_searcher
+  )
+
+  for package in casks
+  do
+    brew cask install $package
+    if [ $? -eq 0 ]
+      echo "$package installed"
+    else
+      echo "$package not installed"
+    fi
+  done
+}
+
+function brew_install_packages {
+  packages=(
+    hub
+    node
+    postgresql
+    yarn
+  )
+
+  for package in packages
+  do
+    brew install $package
+    if [ $? -eq 0 ]
+      echo "$package installed"
+    else
+      echo "$package not installed"
+    fi
+  done
+}
+
+function brew_install {
+  brew_install_packages
+  brew_install_casks
+}
+
+function install_vim_plugins {
+  mkdir ~p ~/.vim/pack/plugins/start
+  plugins=(
+    https://github.com/kien/ctrlp.vim
+    https://github.com/tpope/vim-vinegar.git
+  )
+
+  for plugin in plugins
+  do
+    git clone $plugin
+    if [ $? -eq 0 ]
+      echo "$plugin installed"
+    else
+      echo "$plugin not installed"
+    fi
+  done
+}
+
+setup_bash_profile
+install_brew
+brew_install_programs
+install_vim_plugins
