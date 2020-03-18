@@ -48,22 +48,44 @@ autocmd BufWinLeave * call clearmatches()
 
 autocmd FileType netrw setl bufhidden=delete
 
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+" ctrl-p fuzzy finder
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/log/*,*/app/assets/javascripts/_bundles/*,*.beam,*/_build,*/deps/*
+
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=40
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.yardoc\|public$|log\|tmp$',
+  \ 'file': '\.so$\|\.dat$|\.DS_Store$'
+  \ }
+
+" Use The Silver Searcher
 if executable('ag')
-  " Use Ag over Grep
+  " Use ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
-" fuzzy search
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/log/*,*/app/assets/javascripts/_bundles/*,*.beam,*/_build,*/deps/*
-let g:ctrlp_max_files=0
-let g:ctrlp_max_depth=40
+" Ale linting settings
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\}
 
-" Ignore some folders and files for CtrlP indexing
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.yardoc\|public$|log\|tmp$',
-  \ 'file': '\.so$\|\.dat$|\.DS_Store$'
-  \ }
+highlight clear SignColumn
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+
+let g:ale_change_sign_column_color = 0
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+
+let g:ale_echo_cursor = 1
+let g:ale_echo_msg_error_str = 'Error'
+let g:ale_echo_msg_format = '%code: %%s'
+let g:ale_echo_msg_info_str = 'Info'
+let g:ale_echo_msg_warning_str = 'Warning'
