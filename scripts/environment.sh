@@ -42,4 +42,5 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 # Setting PATH for Python 3.8
 PATH="/Library/Frameworks/Python.framework/Versions/3.8/bin:${PATH}"
+
 export PATH

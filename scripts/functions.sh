@@ -4,9 +4,9 @@
 # File Shortcuts
 # =====================
 
-# source bash profile
-function sbp {
-  source /Users/$USER/.bash_profile
+# source zprofile
+function sz {
+  source /Users/$USER/.zprofile
 }
 
 # cd into desktop
@@ -37,6 +37,14 @@ function notes {
 function checkport {
   port=$1;
   lsof -i tcp:$1;
+}
+
+# A function to easily grep for a matching process
+# USE: psg postgres
+function psg {
+  FIRST=`echo $1 | sed -e 's/^\(.\).*/\1/'`
+  REST=`echo $1 | sed -e 's/^.\(.*\)/\1/'`
+  ps aux | grep "[$FIRST]$REST"
 }
 
 # clone and cd
