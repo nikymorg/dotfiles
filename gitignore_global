@@ -92,3 +92,6 @@ sftp-config.json
 
 #DS Store
 .DS_Store
+
+#Silver Searcher ignore
+*.ignore
