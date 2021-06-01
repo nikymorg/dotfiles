@@ -1,7 +1,8 @@
 #!/bin/bash
 
 function setup_bash_profile {
-  link_file "bash_profile"
+  link_file "zprofile"
+  link_file "zshrc"
   link_file "gitignore_global"
   link_file "vimrc"
   source_directory "./bash"
@@ -10,21 +11,14 @@ function setup_bash_profile {
 
 function link_file {
   FILE=$1
-	backup_file $FILE
 	echo "linking $FILE"
-	ln -s ./${FILE} ${HOME}/.${FILE}
-}
-
-function backup_file {
-	FILE=$1
-	echo "backing up $FILE"
-	cp -L  $HOME/.${FILE}{,.bak}
+	ln -s ${HOME}/.dotfiles/${FILE} ${HOME}/.${FILE}
 }
 
 function source_file {
 	FILE=$1
 	echo "sourcing $FILE"
-  [ -r $FILE] && [ -f $FILE] && source $FILE
+  [ -r $FILE ] && [ -f $FILE ] && source $FILE
 }
 
 function source_directory {
