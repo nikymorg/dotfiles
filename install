@@ -56,7 +56,7 @@ function brew_install_casks {
   for package in casks
   do
     brew cask install $package
-    if [ $? -eq 0 ]
+    if [ $? -eq 0 ]; then
       echo "$package installed"
     else
       echo "$package not installed"
@@ -75,7 +75,7 @@ function brew_install_packages {
   for package in packages
   do
     brew install $package
-    if [ $? -eq 0 ]
+    if [ $? -eq 0 ]; then
       echo "$package installed"
     else
       echo "$package not installed"
@@ -98,7 +98,7 @@ function install_vim_plugins {
   for plugin in plugins
   do
     git clone $plugin
-    if [ $? -eq 0 ]
+    if [ $? -eq 0 ]; then
       echo "$plugin installed"
     else
       echo "$plugin not installed"
