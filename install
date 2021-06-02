@@ -1,0 +1,113 @@
+#!/bin/bash
+
+function setup_bash_profile {
+  link_file "zprofile"
+  link_file "zshrc"
+  link_file "gitignore_global"
+  link_file "vimrc"
+  source_directory "./bash"
+  config_gitignore
+}
+
+function link_file {
+  FILE=$1
+	echo "linking $FILE"
+	ln -s ${HOME}/.dotfiles/${FILE} ${HOME}/.${FILE}
+}
+
+function source_file {
+	FILE=$1
+	echo "sourcing $FILE"
+  [ -r $FILE ] && [ -f $FILE ] && source $FILE
+}
+
+function source_directory {
+  for FILE in ~/.dotfiles/bash/*; do
+	  source_file $FILE
+  done;
+}
+
+function config_gitignore {
+  git config --global core.excludesfile ~/.gitignore_global
+}
+
+function install_brew {
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+}
+
+function brew_install_casks {
+  CASKS=(
+    1password
+    appcleaner
+    arq
+    brave-browser
+    google-chrome
+    spectacle
+    spotify
+  )
+
+  for PACKAGE in ${CASKS[@]}
+  do
+    brew install --cask $PACKAGE
+    if [ $? -eq 0 ]; then
+      echo "$PACKAGE installed"
+    else
+      echo "$PACKAGE not installed"
+    fi
+  done
+}
+
+function brew_install_packages {
+  PACKAGES=(
+    hub
+    node
+    postgresql
+    the_silver_searcher
+    yarn
+  )
+
+  for PACKAGE in ${PACKAGES[@]}
+  do
+    brew install $PACKAGE
+    if [ $? -eq 0 ]; then
+      echo "$PACKAGE installed"
+    else
+      echo "$PACKAGE not installed"
+    fi
+  done
+}
+
+function brew_install {
+  brew_install_packages
+  brew_install_casks
+}
+
+function install_vim_plugins {
+  mkdir -p ${HOME}/.vim/pack/plugins/start
+  PLUGINS=(
+    https://github.com/dense-analysis/ale.git
+    https://github.com/kien/ctrlp.vim
+    https://github.com/tpope/vim-vinegar.git
+  )
+
+  for PLUGIN in ${PLUGINS[@]}
+  do
+    DIR=$(basename "$PLUGIN" ".${PLUGIN##*.}")
+    git clone $PLUGIN ${HOME}/.vim/pack/plugins/start/$DIR
+    if [ $? -eq 0 ]; then
+      echo "$PLUGIN installed"
+    else
+      echo "$PLUGIN not installed"
+    fi
+  done
+}
+
+function npm_install {
+  npm install --global git-open
+}
+
+setup_bash_profile
+install_brew
+brew_install
+install_vim_plugins
+npm_install
