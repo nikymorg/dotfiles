@@ -102,7 +102,12 @@ function install_vim_plugins {
   done
 }
 
+function npm_install {
+  npm install --global git-open
+}
+
 setup_bash_profile
 install_brew
 brew_install
 install_vim_plugins
+npm_install
