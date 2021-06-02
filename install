@@ -36,7 +36,7 @@ function install_brew {
 }
 
 function brew_install_casks {
-  casks=(
+  CASKS=(
     1password
     appcleaner
     arq
@@ -44,35 +44,35 @@ function brew_install_casks {
     google-chrome
     spectacle
     spotify
-    the_silver_searcher
   )
 
-  for package in casks
+  for PACKAGE in ${CASKS[@]}
   do
-    brew install --cask $package
+    brew install --cask $PACKAGE
     if [ $? -eq 0 ]; then
-      echo "$package installed"
+      echo "$PACKAGE installed"
     else
-      echo "$package not installed"
+      echo "$PACKAGE not installed"
     fi
   done
 }
 
 function brew_install_packages {
-  packages=(
+  PACKAGES=(
     hub
     node
     postgresql
+    the_silver_searcher
     yarn
   )
 
-  for package in $packages
+  for PACKAGE in ${PACKAGES[@]}
   do
-    brew install $package
+    brew install $PACKAGE
     if [ $? -eq 0 ]; then
-      echo "$package installed"
+      echo "$PACKAGE installed"
     else
-      echo "$package not installed"
+      echo "$PACKAGE not installed"
     fi
   done
 }
@@ -83,24 +83,26 @@ function brew_install {
 }
 
 function install_vim_plugins {
-  mkdir ~p ~/.vim/pack/plugins/start
-  plugins=(
+  mkdir -p ${HOME}/.vim/pack/plugins/start
+  PLUGINS=(
+    https://github.com/dense-analysis/ale.git
     https://github.com/kien/ctrlp.vim
     https://github.com/tpope/vim-vinegar.git
   )
 
-  for plugin in plugins
+  for PLUGIN in ${PLUGINS[@]}
   do
-    git clone $plugin
+    DIR=$(basename "$PLUGIN" ".${PLUGIN##*.}")
+    git clone $PLUGIN ${HOME}/.vim/pack/plugins/start/$DIR
     if [ $? -eq 0 ]; then
-      echo "$plugin installed"
+      echo "$PLUGIN installed"
     else
-      echo "$plugin not installed"
+      echo "$PLUGIN not installed"
     fi
   done
 }
 
 setup_bash_profile
 install_brew
-#brew_install
+brew_install
 install_vim_plugins
