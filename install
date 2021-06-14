@@ -42,7 +42,7 @@ function brew_install_casks {
     arq
     brave-browser
     google-chrome
-    spectacle
+    rectangle
     spotify
   )
 
