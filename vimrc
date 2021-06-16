@@ -61,11 +61,11 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\.so$\|\.dat$|\.DS_Store$'
   \ }
 
-if executable('ag')
-  " Use ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
+if executable('rg')
+  " Use ripgrep over Grep
+  set grepprg=rg\ --vimgrep\ --no-heading
 
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
 endif
 

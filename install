@@ -62,7 +62,7 @@ function brew_install_packages {
     hub
     node
     postgresql
-    the_silver_searcher
+    ripgrep
     yarn
   )
 
