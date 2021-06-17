@@ -3,7 +3,7 @@
 function setup_bash_profile {
   link_file "zprofile"
   link_file "zshrc"
-  link_file "gitignore_global"
+  link_file "gitignore"
   link_file "vimrc"
   source_directory "./bash"
   config_gitignore
@@ -12,7 +12,7 @@ function setup_bash_profile {
 function link_file {
   FILE=$1
 	echo "linking $FILE"
-	ln -s ${HOME}/.dotfiles/${FILE} ${HOME}/.${FILE}
+	ln -s ${HOME}/.dotfiles/config/${FILE} ${HOME}/.${FILE}
 }
 
 function source_file {
@@ -28,7 +28,7 @@ function source_directory {
 }
 
 function config_gitignore {
-  git config --global core.excludesfile ~/.gitignore_global
+  git config --global core.excludesfile ~/.gitignore
 }
 
 function install_brew {
