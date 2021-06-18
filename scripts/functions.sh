@@ -35,8 +35,12 @@ function notes {
 
 # check what is running on a specific port
 function checkport {
-  port=$1;
-  lsof -i tcp:$1;
+  lsof -i :$1;
+}
+
+# find processes running on a specific port and kill them
+function killport {
+  lsof -ti :$1 | xargs kill -9
 }
 
 # A function to easily grep for a matching process
