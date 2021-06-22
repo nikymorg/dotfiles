@@ -59,6 +59,7 @@ function brew_install_casks {
 
 function brew_install_packages {
   PACKAGES=(
+    fzf
     hub
     node
     postgresql
@@ -86,8 +87,8 @@ function install_vim_plugins {
   mkdir -p ${HOME}/.vim/pack/plugins/start
   PLUGINS=(
     https://github.com/dense-analysis/ale.git
-    https://github.com/kien/ctrlp.vim
     https://github.com/tpope/vim-vinegar.git
+    https://github.com/junegunn/fzf.vim
   )
 
   for PLUGIN in ${PLUGINS[@]}
@@ -106,8 +107,12 @@ function npm_install {
   npm install --global git-open
 }
 
-setup_bash_profile
-install_brew
-brew_install
+function setup {
+  setup_bash_profile
+  install_brew
+  brew_install
+  install_vim_plugins
+  npm_install
+}
+
 install_vim_plugins
-npm_install
