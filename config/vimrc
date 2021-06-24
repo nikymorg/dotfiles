@@ -4,6 +4,7 @@ set number
 " syntax highlighting
 syntax on
 syntax enable
+set re=0
 
 " keep 500 commands in history
 set history=500
