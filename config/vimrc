@@ -48,9 +48,21 @@ autocmd BufWinLeave * call clearmatches()
 
 autocmd FileType netrw setl bufhidden=delete
 
+" plugins
+call plug#begin()
+Plug 'kien/ctrlp.vim'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'dense-analysis/ale'
+Plug 'tpope/vim-vinegar'
+call plug#end()
+
+" grep
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+
 " fuzzy finder
+nnoremap <silent> <C-f> :GFiles<CR>
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/log/*,*/app/assets/javascripts/_bundles/*,*.beam,*/_build,*/deps/*
-set rtp+=/usr/local/opt/fzf
 
 " Ale linting settings
 let g:ale_fixers = {
