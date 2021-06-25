@@ -50,7 +50,6 @@ autocmd FileType netrw setl bufhidden=delete
 
 " plugins
 call plug#begin()
-Plug 'kien/ctrlp.vim'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
@@ -61,7 +60,7 @@ call plug#end()
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
 " fuzzy finder
-nnoremap <silent> <C-f> :GFiles<CR>
+nnoremap <silent> <C-p> :GFiles<CR>
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/log/*,*/app/assets/javascripts/_bundles/*,*.beam,*/_build,*/deps/*
 
 " Ale linting settings
