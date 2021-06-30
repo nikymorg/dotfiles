@@ -61,6 +61,7 @@ function brew_install_casks {
 
 function brew_install_packages {
   PACKAGES=(
+    ctags
     fzf
     hub
     node
