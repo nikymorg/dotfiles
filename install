@@ -44,6 +44,7 @@ function brew_install_casks {
     fzf
     iterm2
     google-chrome
+    postman
     rectangle
     spotify
   )
