@@ -1,23 +1,22 @@
 #!/bin/bash
 
 function setup_profile {
-  link_file "zprofile"
-  link_file "zshrc"
-  link_file "gitignore"
-  link_file "vimrc"
+  link_dotfiles "config"
   config_gitignore
 }
 
-function link_file {
-  FILE=$1
-	echo "linking $FILE"
-	ln -s ${HOME}/.dotfiles/config/${FILE} ${HOME}/.${FILE}
+function link_dotfiles {
+  DIRPATH="${HOME}/.dotfiles/${1}/*"
+  for FILE in $DIRPATH; do
+   	link_file $FILE
+  done;
 }
 
-function source_file {
-	FILE=$1
-	echo "sourcing $FILE"
-  [ -r $FILE ] && [ -f $FILE ] && source $FILE
+function link_file {
+  FILEPATH=$1
+  FILE=$(basename "$FILEPATH")
+  echo "linking $FILE"
+  ln -s ${FILEPATH} ${HOME}/.${FILE}
 }
 
 function config_gitignore {
