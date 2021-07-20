@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function setup_bash_profile {
+function setup_profile {
   link_file "zprofile"
   link_file "zshrc"
   link_file "gitignore"
@@ -89,7 +89,7 @@ function npm_install {
 }
 
 function setup {
-  setup_bash_profile
+  setup_profile
   install_brew
   brew_install
   install_vim_plug
