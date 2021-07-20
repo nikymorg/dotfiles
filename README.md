@@ -12,5 +12,5 @@ Running the below commands will clone this repo into `~/.dotfiles` and set it up
 
 ```terminal
 git clone https://github.com/nikymorg/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles && ./install
+cd ~/.dotfiles && ./install --mac
 ```

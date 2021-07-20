@@ -1,5 +1,5 @@
 # load prompt
-source ~/.dotfiles/scripts/prompt.sh
+zsh_prompt
 
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
