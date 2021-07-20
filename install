@@ -82,7 +82,7 @@ function npm_install {
   npm install --global git-open
 }
 
-function setup {
+function mac_setup {
   link_dotfiles "config"
   config_gitignore
   install_brew
@@ -91,4 +91,17 @@ function setup {
   npm_install
 }
 
-setup
+function linux_setup {
+  link_dotfiles "config"
+  config_gitignore
+}
+
+function setup {
+  if [[ $1 = "--mac" ]]; then
+    mac_setup
+  else
+    linux_setup
+  fi
+}
+
+setup $1
