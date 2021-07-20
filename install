@@ -11,6 +11,9 @@ function link_file {
   FILEPATH=$1
   FILE=$(basename "$FILEPATH")
   echo "linking $FILE"
+  if [[ -f "${HOME}/.${FILE}" ]]; then
+    rm "${HOME}/.${FILE}"
+  fi
   ln -s ${FILEPATH} ${HOME}/.${FILE}
 }
 
