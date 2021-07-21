@@ -85,7 +85,7 @@ function npm_install {
   npm install --global git-open
 }
 
-function mac_setup {
+function default_setup {
   link_dotfiles "config"
   config_gitignore
   install_brew
@@ -94,17 +94,18 @@ function mac_setup {
   npm_install
 }
 
-function linux_setup {
+function codespaces_setup {
   link_dotfiles "config"
   config_gitignore
+  install_vim_plug
 }
 
 function setup {
-  if [[ $1 = "--mac" ]]; then
-    mac_setup
+  if [[ $CODESPACES ]]; then
+    codespaces_setup
   else
-    linux_setup
+    default_setup
   fi
 }
 
-setup $1
+setup
