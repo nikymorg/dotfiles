@@ -2,6 +2,12 @@
 # =====================
 
 # Sourcing files
-for file in ~/.dotfiles/scripts/*; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
+if [[ $CODESPACES ]]; then
+  for file in /workspaces/.codespaces/.persistedshare/dotfiles; do
+	  [ -r "$file" ] && [ -f "$file" ] && source "$file";
+  done;
+else
+  for file in ~/.dotfiles/scripts/*; do
+	  [ -r "$file" ] && [ -f "$file" ] && source "$file";
+  done;
+fi
