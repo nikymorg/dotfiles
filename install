@@ -31,7 +31,6 @@ function brew_install_casks {
     appcleaner
     arq
     brave-browser
-    fzf
     iterm2
     google-chrome
     postman
@@ -53,7 +52,6 @@ function brew_install_casks {
 function brew_install_packages {
   PACKAGES=(
     ctags
-    fzf
     node
     postgresql
     ripgrep
