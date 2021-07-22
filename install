@@ -86,23 +86,25 @@ function npm_install {
 function default_setup {
   link_dotfiles "config"
   config_gitignore
-  install_brew
-  brew_install
   install_vim_plug
-  npm_install
 }
 
 function codespaces_setup {
-  link_dotfiles "config"
-  config_gitignore
-  install_vim_plug
+  default_setup
+}
+
+function mac_setup {
+  default_setup
+  install_brew
+  brew_install
+  npm_install
 }
 
 function setup {
   if [[ $CODESPACES ]]; then
     codespaces_setup
   else
-    default_setup
+    mac_setup
   fi
 }
 
