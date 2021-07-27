@@ -52,4 +52,6 @@ alias rehide="defaults write com.apple.finder AppleShowAllFiles NO; killall Find
 alias inflate='ruby -r zlib -e "STDOUT.write Zlib::Inflate.inflate(STDIN.read)"'
 
 # Vim
-alias ctags="`brew --prefix`/bin/ctags"
+if [[ ! $CODESPACES ]]; then
+  alias ctags="`brew --prefix`/bin/ctags"
+fi
