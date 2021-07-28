@@ -80,7 +80,11 @@ function brew_install {
 }
 
 function install_vim_plug {
-  vim -Es -u $HOME/.vimrc -c "PlugInstall | qa"
+  if [[ $CODESPACES ]]; then
+    vim -Es -u /workspaces/.codespaces/.persistedshare/dotfiles/config/vimrc -c "PlugInstall | qa"
+  else
+    vim -Es -u $HOME/.dotfiles/config/vimrc -c "PlugInstall | qa"
+  fi
 }
 
 function npm_install {
