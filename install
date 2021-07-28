@@ -80,11 +80,9 @@ function brew_install {
 }
 
 function install_vim_plug {
-  if [[ $CODESPACES ]]; then
-    vim -Es -u /workspaces/.codespaces/.persistedshare/dotfiles/config/vimrc -c "PlugInstall | qa"
-  else
-    vim -Es -u $HOME/.dotfiles/config/vimrc -c "PlugInstall | qa"
-  fi
+  VIMRCPATH=$1
+  echo $VIMRCPATH
+  vim -Es -u $VIMRCPATH -c "PlugInstall | qa"
 }
 
 function npm_install {
@@ -94,11 +92,12 @@ function npm_install {
 function default_setup {
   link_dotfiles "config"
   config_gitignore
-  install_vim_plug
 }
 
 function codespaces_setup {
   default_setup
+  sudo apt-get update && sudo apt-get install -y exuberant-ctags
+  install_vim_plug /workspaces/.codespaces/.persistedshare/dotfiles/config/vimrc
 }
 
 function mac_setup {
@@ -106,6 +105,7 @@ function mac_setup {
   install_brew
   brew_install
   npm_install
+  install_vim_plug $HOME/.dotfiles/config/vimrc
 }
 
 function setup {

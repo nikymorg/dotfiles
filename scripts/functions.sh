@@ -88,3 +88,8 @@ function extract {
       echo "'$1' is not a valid file"
   fi
 }
+
+# generate ctags file
+function tag_this {
+  ctags --recurse=yes --exclude=.git --exclude=BUILD --exclude=.svn --exclude=vendor/* --exclude=node_modules/* --exclude=db/* --exclude=log/*
+}
