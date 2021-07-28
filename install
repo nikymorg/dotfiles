@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# log install
+exec > >(tee -i $HOME/dotfiles_install.log)
+exec 2>&1
+set -x
+
 function link_dotfiles {
   DIRPATH="${PWD}/${1}/*"
   for FILE in $DIRPATH; do
