@@ -1,4 +1,8 @@
 # load prompt
+if [[ $CODESPACES ]]; then
+  FILE="/workspaces/.codespaces/.persistedshare/dotfiles/scripts/prompts.sh"
+  [ -r "$FILE" ] && [ -f "$FILE" ] && source "$FILE"
+fi;
 zsh_prompt
 
 if type rg &> /dev/null; then
