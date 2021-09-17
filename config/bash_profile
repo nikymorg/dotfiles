@@ -5,6 +5,8 @@
 if [[ $CODESPACES ]]; then
   for file in /workspaces/.codespaces/.persistedshare/dotfiles/scripts/*; do
 	  [ -r "$file" ] && [ -f "$file" ] && source "$file";
+    alias gcm="git checkout master"
+    alias grm="git rebase master"
   done;
   echo "Welcome to your codespace! ✨"
 else
