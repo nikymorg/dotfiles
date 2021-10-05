@@ -95,9 +95,9 @@ function tag_this {
 }
 
 function tmux1 {
-  tmux new-session -d -s 'dev' 'vim'
-  tmux new-window -t 'dev':1 -n 'tests'
-  tmux new-window -t 'dev':2 -n 'console'
-  tmux new-window -t 'dev':3 -n 'server'
-  tmux attach-session -t 'dev':0
+  tmux new-session -d -s dev 'vim'
+  tmux new-window -t dev:1 -n tests
+  tmux new-window -t dev:2 -n console 'bin/console'
+  tmux new-window -t dev:3 -n server 'script/server --debug'
+  tmux attach-session -t dev:0
 }
