@@ -95,3 +95,7 @@ sftp-config.json
 
 #ripgrep ignore
 *.ignore
+/node_modules
+/test_fixtures
+/vendor
+/public/static
