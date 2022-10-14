@@ -68,9 +68,13 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/log/*,*/app/assets/j
 set tags=tags
 
 " Ale linting settings
+let g:ale_ruby_sorbet_executable = "./bin/srb"
+let g:ale_javascript_eslint_executable = "./bin/eslint"
+
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
-\   'ruby': ['rubocop']
+\   'ruby': ['rubocop', 'srb'],
+\   'erb': ['erblint']
 \}
 
 highlight clear SignColumn
