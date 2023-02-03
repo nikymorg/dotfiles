@@ -98,6 +98,7 @@ function default_setup {
 function codespaces_setup {
   default_setup
   apt-get update && apt-get install -y exuberant-ctags
+  apt install tmux
 }
 
 function mac_setup {
