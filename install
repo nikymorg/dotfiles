@@ -62,13 +62,7 @@ function brew_install_casks {
 }
 
 function brew_install_packages {
-  PACKAGES=(
-    ctags
-    node
-    postgresql
-    ripgrep
-    yarn
-  )
+  local -n PACKAGES=$1
 
   for PACKAGE in ${PACKAGES[@]}
   do
@@ -82,7 +76,14 @@ function brew_install_packages {
 }
 
 function brew_install {
-  brew_install_packages
+  PACKAGES=(
+    ctags
+    node
+    postgresql
+    ripgrep
+    yarn
+  )
+  brew_install_packages PACKAGES
   brew_install_casks
 }
 
@@ -103,9 +104,14 @@ function default_setup {
 }
 
 function install_vim {
+  PACKAGES=(
+    ripgrep
+    tmux
+    vim
+  )
+  # indicates codespace needs further setup
   if [[ $(command -v vim) == "" ]]; then
-    echo "Installing Vim"
-    brew install vim
+    brew_install_packages PACKAGES
   else
     echo "Vim already installed"
   fi
@@ -115,7 +121,6 @@ function codespaces_setup {
   default_setup
   install_brew
   install_vim
-  apt install tmux
 }
 
 function mac_setup {
