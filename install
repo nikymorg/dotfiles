@@ -29,7 +29,7 @@ function config_gitignore {
 function install_brew {
   if [[ $(command -v brew) == "" ]]; then
     echo "Installing Hombrew"
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   else
     echo "Homebrew already installed"
   fi
