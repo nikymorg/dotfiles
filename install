@@ -27,7 +27,12 @@ function config_gitignore {
 }
 
 function install_brew {
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  if [[ $(command -v brew) == "" ]]; then
+    echo "Installing Hombrew"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  else
+    echo "Homebrew already installed"
+  fi
 }
 
 function brew_install_casks {
@@ -97,6 +102,7 @@ function default_setup {
 
 function codespaces_setup {
   default_setup
+  install_brew
   apt-get update && apt-get install -y exuberant-ctags
   apt install tmux
 }
