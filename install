@@ -30,6 +30,8 @@ function install_brew {
   if [[ $(command -v brew) == "" ]]; then
     echo "Installing Hombrew"
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/vscode/.zprofile
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   else
     echo "Homebrew already installed"
   fi
@@ -100,10 +102,19 @@ function default_setup {
   install_vim_plug
 }
 
+function install_vim {
+  if [[ $(command -v vim) == "" ]]; then
+    echo "Installing Vim"
+    brew install vim
+  else
+    echo "Vim already installed"
+  fi
+}
+
 function codespaces_setup {
   default_setup
   install_brew
-  apt-get update && apt-get install -y exuberant-ctags
+  install_vim
   apt install tmux
 }
 
