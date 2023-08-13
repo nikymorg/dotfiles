@@ -5,21 +5,59 @@ exec > >(tee -i $HOME/dotfiles_install.log)
 exec 2>&1
 set -x
 
+MACOS_CASKS=(
+    1password
+    appcleaner
+    arq
+    brave-browser
+    iterm2
+    google-chrome
+    postman
+    rectangle
+    spotify
+  )
+
+MACOS_PACKAGES=(
+    ctags
+    neo_vim
+    node
+    postgresql
+    ripgrep
+    yarn
+  )
+
+CODESPACES_PACKAGES=(
+    neo_vim
+    ripgrep
+    tmux
+    vim
+  )
+
 function link_dotfiles {
-  DIRPATH="${PWD}/${1}/*"
-  for FILE in $DIRPATH; do
-    link_file $FILE
+  local dirpath="${PWD}/${1}/*"
+  for filepath in $dirpath; do
+    local filename=$(basename "$filepath")
+
+    if [[ "$filename" == "nvim" ]]; then
+      local nvimpath="${HOME}/.config/nvim"
+      local linkpath="${nvimpath}/init.vim"
+      mkdir -p nvimpath
+      link_file $filepath $linkpath
+    else
+      local linkpath="${HOME}/.${filename}"
+      link_file $filepath $linkpath
+    fi
   done;
 }
 
 function link_file {
-  FILEPATH=$1
-  FILE=$(basename "$FILEPATH")
-  echo "linking $FILE"
-  if [[ -f "${HOME}/.${FILE}" ]]; then
-    rm "${HOME}/.${FILE}"
+  local filepath=$1
+  local linkpath=$2
+  echo "linking ${filepath} to ${linkpath}"
+  if [[ -f "$linkpath" ]]; then
+    rm "$linkpath"
   fi
-  ln -s ${FILEPATH} ${HOME}/.${FILE}
+  ln -s ${filepath} ${linkpath}
 }
 
 function config_gitignore {
@@ -37,54 +75,19 @@ function install_brew {
   fi
 }
 
-function brew_install_casks {
-  CASKS=(
-    1password
-    appcleaner
-    arq
-    brave-browser
-    iterm2
-    google-chrome
-    postman
-    rectangle
-    spotify
-  )
-
-  for PACKAGE in ${CASKS[@]}
-  do
-    brew install --cask $PACKAGE
-    if [ $? -eq 0 ]; then
-      echo "$PACKAGE installed"
-    else
-      echo "$PACKAGE not installed"
-    fi
-  done
-}
-
-function brew_install_packages {
-  local -n PACKAGES=$1
-
-  for PACKAGE in ${PACKAGES[@]}
-  do
-    brew install $PACKAGE
-    if [ $? -eq 0 ]; then
-      echo "$PACKAGE installed"
-    else
-      echo "$PACKAGE not installed"
-    fi
-  done
-}
-
 function brew_install {
-  PACKAGES=(
-    ctags
-    node
-    postgresql
-    ripgrep
-    yarn
-  )
-  brew_install_packages PACKAGES
-  brew_install_casks
+  local brew_command=("${@:1}")
+  local packages=("${@:2}")
+  echo $brew_command
+
+  for package in "${packages[@]}"
+  do
+    if [[ "$brew_command" == "cask" ]]; then
+      brew install --cask $package
+    else
+      brew install $package
+    fi
+  done
 }
 
 function install_vim_plug {
@@ -97,24 +100,19 @@ function npm_install {
   npm install --global git-open
 }
 
+function install_vim {
+  # indicates codespace needs further setup
+  if [[ $(command -v vim) == "" ]]; then
+    brew_install "package" "${CODESPACES_PACKAGES[@]}"
+  else
+    echo "Vim already installed"
+  fi
+}
+
 function default_setup {
   link_dotfiles "config"
   config_gitignore
   install_vim_plug
-}
-
-function install_vim {
-  PACKAGES=(
-    ripgrep
-    tmux
-    vim
-  )
-  # indicates codespace needs further setup
-  if [[ $(command -v vim) == "" ]]; then
-    brew_install_packages PACKAGES
-  else
-    echo "Vim already installed"
-  fi
 }
 
 function codespaces_setup {
@@ -126,7 +124,8 @@ function codespaces_setup {
 function mac_setup {
   default_setup
   install_brew
-  brew_install
+  brew_install "package" "${MACOS_PACKAGES[@]}"
+  brew_install "cask" "${MACOS_CASKS[@]}"
   npm_install
 }
 
