@@ -65,10 +65,10 @@ function config_gitignore {
 }
 
 function install_brew {
-  if [[ $(command -v brew) == "" ]]; then
+  if ! command -v brew >/dev/null; then
     echo "Installing Hombrew"
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/vscode/.zprofile
+    (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> "$HOME/.zprofile"
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   else
     echo "Homebrew already installed"
@@ -91,6 +91,7 @@ function brew_install {
 }
 
 function install_vim_plug {
+  echo "Installing Vim Plug-ins"
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   vim -Es -u $HOME/.vimrc -c "PlugInstall | qa"
@@ -103,6 +104,7 @@ function npm_install {
 function install_vim {
   # indicates codespace needs further setup
   if [[ $(command -v nvim) == "" ]]; then
+    echo "Installing neovim"
     brew_install "package" "${CODESPACES_PACKAGES[@]}"
   fi
 }
