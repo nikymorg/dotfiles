@@ -103,7 +103,7 @@ function npm_install {
 
 function install_vim {
   # indicates codespace needs further setup
-  if [[ $(command -v vim) == "" ]]; then
+  if [[ $(command -v nvim) == "" ]]; then
     brew_install "package" "${CODESPACES_PACKAGES[@]}"
   else
     echo "Vim already installed"
@@ -113,13 +113,13 @@ function install_vim {
 function default_setup {
   link_dotfiles "config"
   config_gitignore
-  install_vim_plug
 }
 
 function codespaces_setup {
   default_setup
   install_brew
   install_vim
+  install_vim_plug
 }
 
 function mac_setup {
@@ -127,6 +127,7 @@ function mac_setup {
   install_brew
   brew_install "package" "${MACOS_PACKAGES[@]}"
   brew_install "cask" "${MACOS_CASKS[@]}"
+  install_vim_plug
   npm_install
 }
 
