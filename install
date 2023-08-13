@@ -41,7 +41,7 @@ function link_dotfiles {
     if [[ "$filename" == "nvim" ]]; then
       local nvimpath="${HOME}/.config/nvim"
       local linkpath="${nvimpath}/init.vim"
-      mkdir -p nvimpath
+      mkdir -p "${nvimpath}"
       link_file $filepath $linkpath
     else
       local linkpath="${HOME}/.${filename}"
