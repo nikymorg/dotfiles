@@ -59,6 +59,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-vinegar'
+Plug 'github/copilot.vim'
 call plug#end()
 
 " grep
