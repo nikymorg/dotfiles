@@ -5,34 +5,6 @@ exec > >(tee -i $HOME/dotfiles_install.log)
 exec 2>&1
 set -x
 
-MACOS_CASKS=(
-    1password
-    appcleaner
-    arq
-    brave-browser
-    iterm2
-    google-chrome
-    postman
-    rectangle
-    spotify
-  )
-
-MACOS_PACKAGES=(
-    ctags
-    neo_vim
-    node
-    postgresql
-    ripgrep
-    yarn
-  )
-
-CODESPACES_PACKAGES=(
-    neo_vim
-    ripgrep
-    tmux
-    vim
-  )
-
 function link_dotfiles {
   local dirpath="${PWD}/${1}/*"
   for filepath in $dirpath; do
@@ -73,21 +45,8 @@ function install_brew {
   else
     echo "Homebrew already installed"
   fi
-}
-
-function brew_install {
-  local brew_command=("${@:1}")
-  local packages=("${@:2}")
-  echo $brew_command
-
-  for package in "${packages[@]}"
-  do
-    if [[ "$brew_command" == "cask" ]]; then
-      brew install --cask $package
-    else
-      brew install $package
-    fi
-  done
+  echo "Installing Brew packages"
+  brew bundle --file="$HOME/.Brewfile"
 }
 
 function install_vim_plug {
@@ -101,14 +60,6 @@ function npm_install {
   npm install --global git-open
 }
 
-function install_vim {
-  # indicates codespace needs further setup
-  if [[ $(command -v nvim) == "" ]]; then
-    echo "Installing neovim"
-    brew_install "package" "${CODESPACES_PACKAGES[@]}"
-  fi
-}
-
 function default_setup {
   link_dotfiles "config"
   config_gitignore
@@ -117,15 +68,12 @@ function default_setup {
 function codespaces_setup {
   default_setup
   install_brew
-  install_vim
   install_vim_plug
 }
 
 function mac_setup {
   default_setup
   install_brew
-  brew_install "package" "${MACOS_PACKAGES[@]}"
-  brew_install "cask" "${MACOS_CASKS[@]}"
   install_vim_plug
   npm_install
 }
