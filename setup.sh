@@ -37,13 +37,13 @@ function config_gitignore {
 }
 
 function install_brew {
-  if ! command -v brew >/dev/null; then
-    echo "Installing Hombrew"
+  if [[ "$GITHUB_REPOSITORY" == "$THE_BIG_ONE" ]]; then
+    echo "Skipping Homebrew"
+  else
+    echo "Installing Homebrew"
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> "$HOME/.zprofile"
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  else
-    echo "Homebrew already installed"
   fi
   echo "Installing Brew packages"
   brew bundle --file="$HOME/.Brewfile"
@@ -84,6 +84,7 @@ function setup {
   else
     mac_setup
   fi
+  echo "That's all folks!"
 }
 
 setup
