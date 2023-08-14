@@ -89,11 +89,6 @@ function extract {
   fi
 }
 
-# generate ctags file
-function tag_this {
-  ctags --recurse=yes --exclude=.git --exclude=BUILD --exclude=.svn --exclude=vendor/* --exclude=node_modules/* --exclude=db/* --exclude=log/*
-}
-
 function tmux1 {
   tmux new-session -d -s dev 'vim'
   tmux new-window -t dev:1 -n tests

@@ -1,15 +1,16 @@
 # Brewfile
 
-tap 'homebrew/cask'
-tap 'homebrew/bundle'
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "universal-ctags/universal-ctags"
 
 brew "neovim"
 brew "ripgrep"
 brew "tmux"
+brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 brew "vim"
 
 if OS.mac?
-  brew "ctags"
   brew "gh", args: ["HEAD"]
   brew "git"
   brew "jq"

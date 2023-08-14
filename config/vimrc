@@ -69,9 +69,6 @@ set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 nnoremap <silent> <C-p> :GFiles<CR>
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/log/*,*/app/assets/javascripts/_bundles/*,*.beam,*/_build,*/deps/*
 
-" ctags
-set tags=tags
-
 " Ale linting settings
 let g:ale_ruby_sorbet_executable = "./bin/srb"
 let g:ale_javascript_eslint_executable = "./bin/eslint"
