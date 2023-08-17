@@ -36,6 +36,17 @@ function config_gitignore {
   git config --global core.excludesfile ~/.gitignore
 }
 
+function bootstrap_codespace {
+  echo "Bootstrapping"
+  ./script/bootstrap
+
+  echo "Migrating the databases"
+  ./bin/rake db:migrate db:test:prepare
+
+  echo "Building ctags"
+  ./bin/build-ctags
+}
+
 function install_brew {
   echo "Installing Homebrew"
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -60,18 +71,17 @@ function npm_install {
 function default_setup {
   link_dotfiles "config"
   config_gitignore
+  install_brew
+  install_vim_plug
 }
 
 function codespaces_setup {
   default_setup
-  install_brew
-  install_vim_plug
+  bootstrap_codespace
 }
 
 function mac_setup {
   default_setup
-  install_brew
-  install_vim_plug
   npm_install
 }
 
