@@ -40,9 +40,6 @@ set expandtab      " turn tabs into tabstop spaces
 set tabstop=2      " 1 tab = 2 spaces
 set shiftwidth=2   " shift 2 spaces
 
-" colorscheme
-colorscheme desert
-
 " whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
@@ -54,6 +51,7 @@ autocmd FileType netrw setl bufhidden=delete
 
 " plugins
 call plug#begin('~/.vim/plugged')
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'dense-analysis/ale'
 Plug 'github/copilot.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -61,6 +59,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-vinegar'
 call plug#end()
+
+" colorscheme
+colorscheme catppuccin-mocha
 
 " grep
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
