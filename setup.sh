@@ -96,7 +96,7 @@ function setup {
   else
     mac_setup
   fi
-  echo "That's all folks!"
+  echo "Peace out 🤖s!"
 }
 
 setup
