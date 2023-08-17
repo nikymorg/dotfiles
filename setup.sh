@@ -37,10 +37,11 @@ function config_gitignore {
 }
 
 function bootstrap_codespace {
-  local repo_path="/workspaces/${GITHUB_REPOSITORY}"
+  local repo_name=$(echo $GITHUB_REPOSITORY| cut -d'/' -f 2)
+  local workspace_path="/workspaces/${repo_name}"
 
-  echo "Changing directory to ${repo_path}"
-  cd $repo_path
+  echo "Changing directory to ${workspace_path}"
+  cd $workspace_path
 
   echo "Building ctags"
   ./bin/build-ctags
