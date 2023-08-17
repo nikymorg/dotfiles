@@ -4,17 +4,14 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "universal-ctags/universal-ctags"
 
-brew "neovim"
 brew "ripgrep"
 brew "tmux"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
-brew "vim"
 
 if OS.mac?
   brew "gh", args: ["HEAD"]
   brew "git"
   brew "jq"
-  brew "neovim"
   brew "node@14"
   brew "ripgrep"
   brew "yarn"
