@@ -69,6 +69,7 @@ function install_vim_plug {
 }
 
 function npm_install {
+  echo "Installing NPM packages"
   npm install --global git-open
 }
 
