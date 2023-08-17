@@ -37,14 +37,19 @@ function config_gitignore {
 }
 
 function bootstrap_codespace {
+  local repo_path="/workspaces/${GITHUB_REPOSITORY}"
+
+  echo "Changing directory to ${repo_path}"
+  cd repo_path
+
+  echo "Building ctags"
+  ./bin/build-ctags
+
   echo "Bootstrapping"
   ./script/bootstrap
 
   echo "Migrating the databases"
   ./bin/rake db:migrate db:test:prepare
-
-  echo "Building ctags"
-  ./bin/build-ctags
 }
 
 function install_brew {
