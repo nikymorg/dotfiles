@@ -89,7 +89,7 @@ function extract {
   fi
 }
 
-function tmux1 {
+function tmux_dev {
   tmux new-session -d -s dev 'vim'
   tmux new-window -t dev:1 -n tests
   tmux new-window -t dev:2 -n console 'bin/console'
