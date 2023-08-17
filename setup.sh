@@ -48,8 +48,12 @@ function bootstrap_codespace {
 }
 
 function install_brew {
-  echo "Installing Homebrew"
-  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  if [[ ! -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+    echo "Installing Homebrew"
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
+
+  echo "Linking Homebrew"
   (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> "$HOME/.zprofile"
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
