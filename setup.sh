@@ -40,7 +40,7 @@ function bootstrap_codespace {
   local repo_path="/workspaces/${GITHUB_REPOSITORY}"
 
   echo "Changing directory to ${repo_path}"
-  cd repo_path
+  cd $repo_path
 
   echo "Building ctags"
   ./bin/build-ctags
