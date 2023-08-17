@@ -4,9 +4,11 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "universal-ctags/universal-ctags"
 
-brew "ripgrep"
-brew "tmux"
+brew "neovim" unless system "/home/linuxbrew/.linuxbrew/bin/nvim --failfast"
+brew "ripgrep" unless system "/home/linuxbrew/.linuxbrew/bin/rg --failfast"
+brew "tmux" unless system "/usr/bin/tmux --failfast"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
+brew "vim" unless system "/usr/bin/vim --failfast"
 
 if OS.mac?
   brew "gh", args: ["HEAD"]
