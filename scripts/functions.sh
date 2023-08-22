@@ -90,7 +90,7 @@ function extract {
 }
 
 function tmux_dev {
-  tmux new-session -d -s dev 'vim'
+  tmux new-session -d -s dev 'nvim'
   tmux new-window -t dev:1 -n tests
   tmux new-window -t dev:2 -n console 'bin/console'
   tmux new-window -t dev:3 -n server 'script/server --debug'

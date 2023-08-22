@@ -7,10 +7,10 @@ export GIT_MERGE_AUTOEDIT='no'
 
 # Editors
 # Tells your shell that when a program requires various editors, use vim.
-export VISUAL="vim"
-export SVN_EDITOR="vim"
-export GIT_EDITOR="vim"
-export EDITOR="vim"
+export VISUAL="nvim"
+export SVN_EDITOR="nvim"
+export GIT_EDITOR="nvim"
+export EDITOR="nvim"
 
 # Library Paths
 # =====================

@@ -68,10 +68,12 @@ function install_brew {
 }
 
 function install_vim_plug {
-  echo "Installing Vim Plug-ins"
-  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  vim -Es -u $HOME/.vimrc -c "PlugInstall | qa"
+  if command -v vim >/dev/null; then
+    echo "Installing Vim Plug-ins"
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    vim -Es -u $HOME/.vimrc -c "PlugInstall | qa"
+  fi
 }
 
 function npm_install {
@@ -87,6 +89,8 @@ function default_setup {
 }
 
 function codespaces_setup {
+  # try to install early for codespaces
+  install_vim_plug
   default_setup
   bootstrap_codespace
 }
