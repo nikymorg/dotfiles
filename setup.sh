@@ -81,22 +81,25 @@ function npm_install {
   npm install --global git-open
 }
 
-function default_setup {
+function config_dotfiles {
   link_dotfiles "config"
   config_gitignore
-  install_brew
-  install_vim_plug
 }
 
 function codespaces_setup {
+  config_dotfiles
   # try to install early for codespaces
   install_vim_plug
-  default_setup
+  install_brew
+  # retry in case
+  install_vim_plug
   bootstrap_codespace
 }
 
 function mac_setup {
-  default_setup
+  config_dotfiles
+  install_brew
+  install_vim_plug
   npm_install
 }
 
