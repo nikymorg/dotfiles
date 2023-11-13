@@ -2,8 +2,10 @@
 
 tap "homebrew/bundle"
 tap "homebrew/cask"
+tap "homebrew/cask-fonts"
 tap "universal-ctags/universal-ctags"
 
+brew "font-monaspace"
 brew "neovim" unless system "/home/linuxbrew/.linuxbrew/bin/nvim --failfast"
 brew "ripgrep"
 brew "tmux" unless system "/usr/bin/tmux --failfast"
