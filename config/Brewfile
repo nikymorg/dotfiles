@@ -4,7 +4,7 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 
-brew "neovim" unless system "/home/linuxbrew/.linuxbrew/bin/nvim --failfast"
+brew "neovim" unless system "/usr/bin/nvim --failfast"
 brew "ripgrep"
 brew "tmux" unless system "/usr/bin/tmux --failfast"
 brew "universal-ctags"
