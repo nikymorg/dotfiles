@@ -37,20 +37,24 @@ function config_gitignore {
 }
 
 function bootstrap_codespace {
-  local repo_name=$(echo $GITHUB_REPOSITORY| cut -d'/' -f 2)
-  local workspace_path="/workspaces/${repo_name}"
+  if [ -z "${BOOTSTRAP_REPO}" ]; then
+    echo "Skipping bootstrap"
+  else
+    local repo_name=$(echo $GITHUB_REPOSITORY| cut -d'/' -f 2)
+    local workspace_path="/workspaces/${repo_name}"
 
-  echo "Changing directory to ${workspace_path}"
-  cd $workspace_path
+    echo "Changing directory to ${workspace_path}"
+    cd $workspace_path
 
-  echo "Building ctags"
-  ./bin/build-ctags
+    echo "Building ctags"
+    ./bin/build-ctags
 
-  echo "Bootstrapping"
-  ./script/bootstrap
+    echo "Bootstrapping"
+    ./script/bootstrap
 
-  echo "Migrating the databases"
-  ./bin/rake db:migrate db:test:prepare
+    echo "Migrating the databases"
+    ./bin/rake db:migrate db:test:prepare
+  fi
 }
 
 function install_brew {
