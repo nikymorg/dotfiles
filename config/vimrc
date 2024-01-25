@@ -73,6 +73,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/log/*,*/app/assets/j
 let g:ale_ruby_sorbet_executable = "./bin/srb"
 let g:ale_javascript_eslint_executable = "./bin/eslint"
 
+let b:ale_linters={}
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'ruby': ['rubocop', 'srb'],
