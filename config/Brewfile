@@ -26,7 +26,6 @@ if OS.mac?
   cask "iterm2"
   cask "jumpcut"
   cask "macdown"
-  cask "postman"
   cask "rectangle"
   cask "spotify"
 end
