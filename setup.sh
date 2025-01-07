@@ -12,6 +12,10 @@ function link_dotfiles {
     local linkpath="${HOME}/.${filename}"
     link_file $filepath $linkpath
   done;
+
+  # link nvim config
+  local filepath=".config/nvim/init.lua"
+  link_file "${PWD}/${1}/${filepath}" "${HOME}/${filepath}"
 }
 
 function link_file {
