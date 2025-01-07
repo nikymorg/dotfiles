@@ -9,16 +9,8 @@ function link_dotfiles {
   local dirpath="${PWD}/${1}/*"
   for filepath in $dirpath; do
     local filename=$(basename "$filepath")
-
-    if [[ "$filename" == "nvim" ]]; then
-      local nvimpath="${HOME}/.config/nvim"
-      local linkpath="${nvimpath}/init.vim"
-      mkdir -p "${nvimpath}"
-      link_file $filepath $linkpath
-    else
-      local linkpath="${HOME}/.${filename}"
-      link_file $filepath $linkpath
-    fi
+    local linkpath="${HOME}/.${filename}"
+    link_file $filepath $linkpath
   done;
 }
 
@@ -71,15 +63,6 @@ function install_brew {
   brew bundle --file="$HOME/.Brewfile"
 }
 
-function install_vim_plug {
-  if command -v vim >/dev/null; then
-    echo "Installing Vim Plug-ins"
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    vim -Es -u $HOME/.vimrc -c "PlugInstall | qa"
-  fi
-}
-
 function npm_install {
   echo "Installing NPM packages"
   npm install --global git-open
@@ -92,18 +75,13 @@ function config_dotfiles {
 
 function codespaces_setup {
   config_dotfiles
-  # try to install early for codespaces
-  install_vim_plug
   install_brew
-  # retry in case
-  install_vim_plug
   bootstrap_codespace
 }
 
 function mac_setup {
   config_dotfiles
   install_brew
-  install_vim_plug
   npm_install
 }
 
