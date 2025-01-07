@@ -15,6 +15,7 @@ function link_dotfiles {
 
   # link nvim config
   local filepath=".config/nvim/init.lua"
+  mkdir -p "${HOME}/.config/nvim"
   link_file "${PWD}/${1}/${filepath}" "${HOME}/${filepath}"
 }
 
