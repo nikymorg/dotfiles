@@ -25,14 +25,8 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- style
-  {
-    "ibhagwan/fzf-lua",
-    -- optional for icon support
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    -- or if using mini.icons/mini.nvim
-    -- dependencies = { "echasnovski/mini.icons" },
-    opts = {}
-  }, -- fzf
+  'junegunn/fzf', -- fuzzyfinder
+  'junegunn/fzf.vim', -- fuzzyfinder commands
   'dense-analysis/ale', -- syntax checking
   'github/copilot.vim', -- AI code suggestions
   'tpope/vim-vinegar', -- filenav
