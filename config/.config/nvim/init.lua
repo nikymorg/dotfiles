@@ -101,6 +101,7 @@ vim.cmd([[
   let b:ale_linters={}
   let g:ale_fixers = {
   \   'javascript': ['eslint'],
+  \   'typescript': ['eslint'],
   \   'ruby': ['rubocop', 'srb'],
   \   'erb': ['erblint']
   \}
