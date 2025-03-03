@@ -119,7 +119,4 @@ vim.cmd([[
   let g:ale_echo_msg_format = '%code: %%s'
   let g:ale_echo_msg_info_str = 'Info'
   let g:ale_echo_msg_warning_str = 'Warning'
-
-  " show line numbers
-  set number
 ]])
