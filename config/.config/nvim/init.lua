@@ -32,10 +32,10 @@ require('lazy').setup({
   'tpope/vim-vinegar', -- filenav
 })
 
-vim.cmd([[
-  " show line numbers
-  set number
+-- show line numbers
+vim.opt.number = true
 
+vim.cmd([[
   " syntax highlighting
   syntax on
   syntax enable
