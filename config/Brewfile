@@ -14,18 +14,13 @@ if OS.mac?
   brew "git"
   brew "jq"
   brew "node@14"
-  brew "ripgrep"
   brew "yarn"
 
   cask "1password"
   cask "appcleaner"
-  cask "arq"
   cask "brave-browser"
   cask "google-chrome"
-  cask "graphiql"
   cask "iterm2"
-  cask "jumpcut"
   cask "macdown"
   cask "rectangle"
-  cask "spotify"
 end
