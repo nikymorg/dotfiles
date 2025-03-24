@@ -3,8 +3,8 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 
-brew "neovim" unless system "/usr/bin/nvim --failfast"
 brew "fzf"
+brew "neovim" unless system "/usr/bin/nvim --failfast"
 brew "ripgrep"
 brew "tmux" unless system "/usr/bin/tmux --failfast"
 brew "universal-ctags"
