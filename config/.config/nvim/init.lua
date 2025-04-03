@@ -33,7 +33,7 @@ require('lazy').setup({
 })
 
 -- show line numbers
-vim.opt.number = true
+-- vim.opt.number = true
 
 vim.cmd([[
   " syntax highlighting
