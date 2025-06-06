@@ -16,7 +16,7 @@ if OS.mac?
   cask "1password"
   cask "appcleaner"
   cask "brave-browser"
-  cask "google-chrome"
+  cask "clipy"
   cask "iterm2"
   cask "macdown"
   cask "rectangle"
