@@ -13,9 +13,8 @@ Configuration files for:
 ## Organization
 
 Scripts are organized by platform in `scripts/`:
-- `common/` - Shared across MacOS and Codespaces
+- `common/` - Shared across MacOS and Codespaces  
 - `macos/` - MacOS-specific configuration
-- `codespaces/` - GitHub Codespaces-specific configuration
 
 ## Installation
 

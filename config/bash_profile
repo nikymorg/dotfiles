@@ -5,11 +5,6 @@ if [[ $CODESPACES ]]; then
     [ -r "$file" ] && [ -f "$file" ] && source "$file";
   done;
   
-  # Source codespaces-specific scripts
-  for file in /workspaces/.codespaces/.persistedshare/dotfiles/scripts/codespaces/*.sh; do
-    [ -r "$file" ] && [ -f "$file" ] && source "$file";
-  done;
-  
   echo "Welcome to your codespace! ✨"
 else
   # Source common scripts

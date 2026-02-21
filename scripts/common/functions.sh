@@ -1,6 +1,35 @@
 # Helper Functions
 # =====================
 
+# Get the default branch (main or master)
+function get_default_branch {
+  # Try to get from origin/HEAD
+  local branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
+  
+  # If that fails, check which exists locally
+  if [ -z "$branch" ]; then
+    if git show-ref --verify --quiet refs/heads/main; then
+      branch="main"
+    elif git show-ref --verify --quiet refs/heads/master; then
+      branch="master"
+    else
+      branch="main"  # default fallback
+    fi
+  fi
+  
+  echo "$branch"
+}
+
+# Checkout default branch (main or master)
+function gcm {
+  git checkout $(get_default_branch)
+}
+
+# Rebase onto default branch (main or master)
+function grm {
+  git rebase $(get_default_branch)
+}
+
 # Other Functions
 # =====================
 
