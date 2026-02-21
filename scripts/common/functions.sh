@@ -1,33 +1,33 @@
 # Helper Functions
 # =====================
 
-# File Shortcuts
-# =====================
-
-# source zprofile
-function sz {
-  source /Users/$USER/.zprofile
+# Get the default branch (main or master)
+function get_default_branch {
+  # Try to get from origin/HEAD
+  local branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
+  
+  # If that fails, check which exists locally
+  if [ -z "$branch" ]; then
+    if git show-ref --verify --quiet refs/heads/main; then
+      branch="main"
+    elif git show-ref --verify --quiet refs/heads/master; then
+      branch="master"
+    else
+      branch="main"  # default fallback
+    fi
+  fi
+  
+  echo "$branch"
 }
 
-# cd into desktop
-function desktop {
-  cd /Users/$USER/Desktop/
+# Checkout default branch (main or master)
+function gcm {
+  git checkout $(get_default_branch)
 }
 
-# cd and open dotfiles
-function dot {
-  cd /Users/$USER/.dotfiles
-  $EDITOR .
-}
-
-# cd into code dir
-function code {
-  cd /Users/$USER/code
-}
-
-# open notes
-function notes {
-  $EDITOR /Users/$USER/notes
+# Rebase onto default branch (main or master)
+function grm {
+  git rebase $(get_default_branch)
 }
 
 # Other Functions
@@ -95,4 +95,24 @@ function tmux_dev {
   tmux new-window -t dev:2 -n console 'bin/console'
   tmux new-window -t dev:3 -n server 'script/server --debug'
   tmux attach-session -t dev:0
+}
+
+# Open git repository in browser
+function git-open {
+  url=$(git config --get remote.origin.url 2>/dev/null)
+  if [ -z "$url" ]; then
+    echo "No git remote found"
+    return 1
+  fi
+  
+  # Convert SSH format to HTTPS
+  url=${url/git@github.com:/https://github.com/}
+  url=${url%.git}
+  
+  if [[ $CODESPACES ]]; then
+    echo "$url"
+  else
+    # MacOS: open in default browser
+    open "$url" 2>/dev/null || xdg-open "$url" 2>/dev/null || echo "$url"
+  fi
 }

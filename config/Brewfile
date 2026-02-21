@@ -1,18 +1,25 @@
 # Brewfile
+# =====================
 
+# Shared Packages (Codespaces + MacOS)
+# =====================
 brew "fzf"
 brew "neovim" unless system "/usr/bin/nvim --failfast"
 brew "ripgrep"
 brew "tmux" unless system "/usr/bin/tmux --failfast"
 brew "universal-ctags"
 
+# MacOS-specific Packages
+# =====================
 if OS.mac?
+  # CLI Tools
   brew "gh", args: ["HEAD"]
   brew "git"
   brew "jq"
   brew "node"
   brew "yarn"
 
+  # Applications
   cask "1password"
   cask "appcleaner"
   cask "brave-browser"

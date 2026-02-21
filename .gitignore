@@ -1,1 +1,2 @@
-scripts/local.sh
+scripts/common/local.sh
+scripts/macos/local.sh

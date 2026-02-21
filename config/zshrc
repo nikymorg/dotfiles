@@ -1,11 +1,24 @@
-# load prompt
+# Sourcing files
 if [[ $CODESPACES ]]; then
-  for file in /workspaces/.codespaces/.persistedshare/dotfiles/scripts/*; do
+  # Source common scripts
+  for file in /workspaces/.codespaces/.persistedshare/dotfiles/scripts/common/*.sh; do
+    [ -r "$file" ] && [ -f "$file" ] && source "$file";
+  done;
+else
+  # Source common scripts
+  for file in ~/.dotfiles/scripts/common/*.sh; do
+    [ -r "$file" ] && [ -f "$file" ] && source "$file";
+  done;
+  
+  # Source macOS-specific scripts
+  for file in ~/.dotfiles/scripts/macos/*.sh; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file";
   done;
 fi;
+
 zsh_prompt
 
+# FZF configuration
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
