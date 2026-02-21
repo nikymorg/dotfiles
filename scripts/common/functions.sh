@@ -67,3 +67,23 @@ function tmux_dev {
   tmux new-window -t dev:3 -n server 'script/server --debug'
   tmux attach-session -t dev:0
 }
+
+# Open git repository in browser
+function git-open {
+  url=$(git config --get remote.origin.url 2>/dev/null)
+  if [ -z "$url" ]; then
+    echo "No git remote found"
+    return 1
+  fi
+  
+  # Convert SSH format to HTTPS
+  url=${url/git@github.com:/https://github.com/}
+  url=${url%.git}
+  
+  if [[ $CODESPACES ]]; then
+    echo "$url"
+  else
+    # MacOS: open in default browser
+    open "$url" 2>/dev/null || xdg-open "$url" 2>/dev/null || echo "$url"
+  fi
+}

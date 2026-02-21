@@ -24,7 +24,7 @@ alias gp="git push -u origin HEAD"
 alias gc="git commit"
 alias gcm="git checkout main"
 alias grm="git rebase main"
-alias gop="git open"
+alias gop="git-open"
 alias grc="git rebase --continue"
 
 # Rspec

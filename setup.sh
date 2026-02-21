@@ -68,11 +68,6 @@ function install_brew {
   brew bundle --file="$HOME/.Brewfile"
 }
 
-function npm_install {
-  echo "Installing NPM packages"
-  npm install --global git-open
-}
-
 function config_dotfiles {
   link_dotfiles "config"
   config_gitignore
@@ -87,7 +82,6 @@ function codespaces_setup {
 function mac_setup {
   config_dotfiles
   install_brew
-  npm_install
 }
 
 function setup {
