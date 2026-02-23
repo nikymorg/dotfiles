@@ -121,8 +121,6 @@ function install_brew {
     brew_path=$(command -v brew)
   elif [[ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
     brew_path="/home/linuxbrew/.linuxbrew/bin/brew"
-    echo "Linking Homebrew"
-    (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> "$HOME/.zprofile"
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   elif [[ -x "/opt/homebrew/bin/brew" ]]; then
     brew_path="/opt/homebrew/bin/brew"
@@ -135,7 +133,7 @@ function install_brew {
   echo "Installing Brew packages"
   local brewfile_path="${HOME}/.Brewfile"
   if [[ -f "$brewfile_path" ]]; then
-    "${brew_path}" bundle --file="$brewfile_path" || fail "Brew bundle install failed"
+    "${brew_path}" bundle --quiet --file="$brewfile_path" || fail "Brew bundle install failed"
   else
     fail "Brewfile not found at ${brewfile_path}"
   fi

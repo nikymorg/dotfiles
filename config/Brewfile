@@ -4,9 +4,9 @@
 # Shared Packages (Codespaces + MacOS)
 # =====================
 brew "fzf"
-brew "neovim" unless system "/usr/bin/nvim --failfast"
+brew "neovim" unless system "/usr/bin/nvim --version"
 brew "ripgrep"
-brew "tmux" unless system "/usr/bin/tmux --failfast"
+brew "tmux" unless system "/usr/bin/tmux -V"
 brew "universal-ctags"
 
 # MacOS-specific Packages
