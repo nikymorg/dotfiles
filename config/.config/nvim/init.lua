@@ -56,7 +56,6 @@ require('lazy').setup({
   'junegunn/fzf', -- fuzzyfinder
   'junegunn/fzf.vim', -- fuzzyfinder commands
   'dense-analysis/ale', -- syntax checking
-  'github/copilot.vim', -- AI code suggestions
   'tpope/vim-vinegar', -- filenav
 })
 
