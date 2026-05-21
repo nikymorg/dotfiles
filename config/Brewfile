@@ -1,8 +1,5 @@
 # Brewfile
 
-tap "homebrew/bundle"
-tap "homebrew/cask"
-
 brew "fzf"
 brew "neovim" unless system "/usr/bin/nvim --failfast"
 brew "ripgrep"
@@ -10,10 +7,11 @@ brew "tmux" unless system "/usr/bin/tmux --failfast"
 brew "universal-ctags"
 
 if OS.mac?
+  brew "1password-cli"
   brew "gh", args: ["HEAD"]
   brew "git"
   brew "jq"
-  brew "node@14"
+  brew "node"
   brew "yarn"
 
   cask "1password"

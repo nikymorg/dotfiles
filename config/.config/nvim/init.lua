@@ -30,10 +30,11 @@ require('lazy').setup({
   'dense-analysis/ale', -- syntax checking
   'github/copilot.vim', -- AI code suggestions
   'tpope/vim-vinegar', -- filenav
+  'ludovicchabant/vim-gutentags', -- ctags
 })
 
 -- show line numbers
--- vim.opt.number = true
+vim.opt.number = true
 
 vim.cmd([[
   " syntax highlighting
