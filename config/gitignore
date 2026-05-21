@@ -98,3 +98,4 @@ sftp-config.json
 /test_fixtures
 /vendor
 /public/static
+/tags
