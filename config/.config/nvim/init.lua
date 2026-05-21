@@ -57,6 +57,7 @@ require('lazy').setup({
   'junegunn/fzf.vim', -- fuzzyfinder commands
   'dense-analysis/ale', -- syntax checking
   'tpope/vim-vinegar', -- filenav
+  'ludovicchabant/vim-gutentags', -- ctags
 })
 
 -- line numbers
