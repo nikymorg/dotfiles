@@ -13,6 +13,7 @@ brew "universal-ctags"
 # =====================
 if OS.mac?
   # CLI Tools
+  brew "1password-cli"
   brew "gh", args: ["HEAD"]
   brew "git"
   brew "jq"
