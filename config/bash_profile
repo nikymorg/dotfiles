@@ -4,14 +4,14 @@ if [[ $CODESPACES ]]; then
   for file in /workspaces/.codespaces/.persistedshare/dotfiles/scripts/common/*.sh; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file";
   done;
-  
+
   echo "Welcome to your codespace! ✨"
 else
   # Source common scripts
   for file in ~/.dotfiles/scripts/common/*.sh; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file";
   done;
-  
+
   # Source macOS-specific scripts
   for file in ~/.dotfiles/scripts/macos/*.sh; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file";

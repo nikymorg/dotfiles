@@ -75,6 +75,7 @@ tramp
 
 # workspace files are user-specific
 *.sublime-workspace
+*.claude/worktrees/
 
 # project files should be checked into the repository, unless a significant
 # proportion of contributors will probably not be using SublimeText
@@ -98,3 +99,5 @@ sftp-config.json
 /test_fixtures
 /vendor
 /public/static
+/tags
+.tool-versions

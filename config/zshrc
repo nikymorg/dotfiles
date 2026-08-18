@@ -9,7 +9,7 @@ else
   for file in ~/.dotfiles/scripts/common/*.sh; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file";
   done;
-  
+
   # Source macOS-specific scripts
   for file in ~/.dotfiles/scripts/macos/*.sh; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file";
@@ -23,3 +23,5 @@ if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
+
+eval "$(mise activate zsh)"

@@ -5,7 +5,7 @@
 function get_default_branch {
   # Try to get from origin/HEAD
   local branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
-  
+
   # If that fails, check which exists locally
   if [ -z "$branch" ]; then
     if git show-ref --verify --quiet refs/heads/main; then
@@ -16,7 +16,7 @@ function get_default_branch {
       branch="main"  # default fallback
     fi
   fi
-  
+
   echo "$branch"
 }
 
@@ -104,15 +104,46 @@ function git-open {
     echo "No git remote found"
     return 1
   fi
-  
+
   # Convert SSH format to HTTPS
   url=${url/git@github.com:/https://github.com/}
   url=${url%.git}
-  
+
   if [[ $CODESPACES ]]; then
     echo "$url"
   else
     # MacOS: open in default browser
     open "$url" 2>/dev/null || xdg-open "$url" 2>/dev/null || echo "$url"
   fi
+}
+
+git-clean() {
+  local main=${1:-main}
+  git fetch --prune
+
+  local wt_file
+  wt_file=$(mktemp)
+  {
+    git worktree list --porcelain | grep '^branch ' | sed 's|branch refs/heads/||'
+    for f in .git/worktrees/*/HEAD; do
+      [[ -f "$f" ]] && grep -o 'refs/heads/.*' "$f" | sed 's|refs/heads/||'
+    done
+  } | sort -u > "$wt_file"
+
+  local branches
+  branches=$(
+    { git branch --merged "$main" | grep -v "^\*\|^\s*${main}$"
+      git branch -vv | awk '/: gone]/{print $1}'
+      git branch -vv | grep -v '\[' | awk '{print $1}'; } \
+    | sed 's/^[+* ]*//' | grep . \
+    | sort -u \
+    | grep -vFxf "$wt_file"
+  )
+  rm -f "$wt_file"
+
+  [[ -z "$branches" ]] && echo "Nothing to clean." && return
+  echo "$branches" | sed 's/^/  /'
+  printf "Delete? [y/N] "
+  read -r c
+  [[ $c =~ ^[Yy]$ ]] && echo "$branches" | sort -u | xargs git branch -D
 }
