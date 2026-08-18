@@ -49,11 +49,11 @@ function link_file {
   local filepath="$1"
   local linkpath="$2"
   echo "Linking ${filepath} to ${linkpath}"
-  
+
   if [[ -f "$linkpath" ]] || [[ -L "$linkpath" ]]; then
     rm "$linkpath" || fail "Failed to remove existing file at ${linkpath}"
   fi
-  
+
   ln -s "$filepath" "$linkpath" || fail "Failed to create symlink from ${filepath} to ${linkpath}"
 }
 
@@ -66,22 +66,22 @@ function bootstrap_codespace {
     echo "Skipping bootstrap (BOOTSTRAP_REPO not set)"
     return 0
   fi
-  
+
   local repo_name
   repo_name=$(echo "${GITHUB_REPOSITORY:-}" | cut -d'/' -f 2)
-  
+
   if [[ -z "$repo_name" ]]; then
     warn "GITHUB_REPOSITORY not set, skipping workspace bootstrap"
     return 0
   fi
-  
+
   local workspace_path="/workspaces/${repo_name}"
-  
+
   if [[ ! -d "$workspace_path" ]]; then
     warn "Workspace directory ${workspace_path} not found, skipping bootstrap"
     return 0
   fi
-  
+
   echo "Changing directory to ${workspace_path}"
   cd "$workspace_path" || fail "Failed to change to ${workspace_path}"
 
@@ -146,14 +146,14 @@ function config_dotfiles {
 
 function setup {
   echo "Starting dotfiles setup..."
-  
+
   config_dotfiles || fatal "Dotfiles configuration failed"
   install_brew || fatal "Homebrew installation failed"
-  
+
   if [[ $CODESPACES ]]; then
     bootstrap_codespace || fatal "Codespace bootstrap failed"
   fi
-  
+
   echo "Peace out 🤖s!"
 }
 
